@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | StockSense AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="auth-container">
+
+        <!-- LEFT SIDE -->
+        <div class="auth-left">
+
+            <div class="overlay"></div>
+
+            <div class="left-content">
+                <h1>StockSense AI</h1>
+
+                <p>
+                    AI-powered inventory management platform
+                    designed to monitor products, analyze sales,
+                    predict stock demand, and improve business performance.
+                </p>
+
+                <ul>
+                    <li>✔ Smart Inventory Tracking</li>
+                    <li>✔ Sales Analytics Dashboard</li>
+                    <li>✔ AI Stock Prediction</li>
+                    <li>✔ Real-Time Product Monitoring</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="auth-right">
+
+            <div class="login-box">
+
+                <h2>Welcome Back</h2>
+
+                <p class="subtitle">
+                    Login to continue to StockSense AI
+                </p>
+
+                <form method="POST">
+
+                    <div class="input-group">
+                        <label>Username</label>
+
+                        <input
+                            type="text"
+                            name="username"
+                            placeholder="Enter your username"
+                            required
+                        >
+                    </div>
+
+                    <div class="input-group">
+                        <label>Password</label>
+
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            required
+                        >
+                    </div>
+
+                    <button type="submit" class="login-btn">
+                        Login
+                    </button>
+
+                </form>
+
+                <div class="bottom-text">
+                    Don’t have an account?
+                    <a href="/signup">Create Account</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

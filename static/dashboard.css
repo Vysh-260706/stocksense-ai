@@ -1,0 +1,218 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins', sans-serif;
+    background:#eef2f7;
+    display:flex;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width:270px;
+    height:100vh;
+    position:fixed;
+    background:linear-gradient(180deg,#020617,#0f172a);
+    padding:30px 20px;
+    color:white;
+}
+
+.sidebar h2{
+    font-size:42px;
+    line-height:50px;
+    margin-bottom:50px;
+    font-weight:700;
+}
+
+.sidebar ul{
+    list-style:none;
+    padding-left:10px;
+}
+
+.sidebar ul li{
+    margin:22px 0;
+}
+
+.sidebar ul li a{
+    text-decoration:none;
+    color:#f8fafc;
+    font-size:18px;
+    transition:0.3s;
+}
+
+.sidebar ul li a:hover{
+    color:#38bdf8;
+    padding-left:8px;
+}
+
+/* MAIN CONTENT */
+
+.main-content{
+    margin-left:270px;
+    width:calc(100% - 270px);
+    padding:35px;
+}
+
+/* TOP SECTION */
+
+.top-navbar{
+    background:white;
+    padding:30px;
+    border-radius:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.top-navbar h3{
+    font-size:42px;
+    font-weight:700;
+    color:#0f172a;
+}
+
+.top-navbar p{
+    margin-top:10px;
+    color:#64748b;
+    font-size:19px;
+}
+
+/* CARDS */
+
+.dashboard-card{
+    padding:35px;
+    border-radius:25px;
+    color:white;
+    box-shadow:0 12px 25px rgba(0,0,0,0.12);
+    transition:0.3s;
+    margin-top:25px;
+}
+
+.dashboard-card:hover{
+    transform:translateY(-8px);
+}
+
+.dashboard-card h5{
+    font-size:22px;
+    margin-bottom:15px;
+    font-weight:600;
+    color:white;
+}
+
+.dashboard-card h2{
+    font-size:50px;
+    font-weight:700;
+    color:white;
+}
+
+/* CARD COLORS */
+
+.blue-card{
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+}
+
+.green-card{
+    background:linear-gradient(135deg,#059669,#10b981);
+}
+
+.orange-card{
+    background:linear-gradient(135deg,#ea580c,#fb923c);
+}
+
+.red-card{
+    background:linear-gradient(135deg,#dc2626,#ef4444);
+}
+
+/* TABLE */
+
+.table-section{
+    background:white;
+    margin-top:40px;
+    padding:35px;
+    border-radius:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.table-section h3{
+    font-size:32px;
+    margin-bottom:25px;
+    font-weight:700;
+}
+
+.table{
+    border-radius:15px;
+    overflow:hidden;
+}
+
+.table th{
+    background:#f8fafc;
+    font-size:18px;
+}
+
+.table td{
+    font-size:17px;
+}
+
+/* PROFILE PAGE */
+
+.profile-container{
+    width:100%;
+    min-height:100vh;
+    background:#eef2f7;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+}
+
+.profile-card{
+    width:100%;
+    max-width:900px;
+    background:white;
+    border-radius:30px;
+    padding:50px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.1);
+}
+
+.profile-header{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.profile-header img{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    object-fit:cover;
+    margin-bottom:20px;
+    border:5px solid #3b82f6;
+}
+
+.profile-header h2{
+    font-size:40px;
+    color:#0f172a;
+    font-weight:700;
+}
+
+.profile-details{
+    margin-top:30px;
+}
+
+.profile-box{
+    background:#f8fafc;
+    padding:25px;
+    border-radius:18px;
+    margin-bottom:20px;
+}
+
+.profile-box h4{
+    color:#64748b;
+    margin-bottom:10px;
+}
+
+.profile-box p{
+    font-size:22px;
+    font-weight:600;
+    color:#0f172a;
+}

@@ -1,0 +1,320 @@
+/* static/style.css */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins', sans-serif;
+    background:#0f172a;
+    overflow-x:hidden;
+}
+
+/* ========================================= */
+/* NAVBAR */
+/* ========================================= */
+
+.custom-navbar{
+    background:rgba(15,23,42,0.95);
+    backdrop-filter:blur(10px);
+    padding:18px 0;
+}
+
+.logo-text{
+    font-size:28px;
+    color:white;
+}
+
+.nav-link{
+    color:white !important;
+    margin-left:20px;
+    font-weight:500;
+}
+
+.login-btn{
+    border:1px solid #38bdf8;
+    color:white;
+    border-radius:30px;
+    padding:10px 22px;
+}
+
+.signup-btn{
+    background:linear-gradient(135deg,#2563eb,#38bdf8);
+    color:white;
+    border-radius:30px;
+    padding:10px 22px;
+}
+
+/* ========================================= */
+/* HERO */
+/* ========================================= */
+
+.hero-section{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    background:linear-gradient(135deg,#0f172a,#111827);
+    padding-top:100px;
+}
+
+.hero-badge{
+    background:rgba(255,255,255,0.08);
+    color:#38bdf8;
+    padding:12px 20px;
+    border-radius:30px;
+    display:inline-block;
+    margin-bottom:30px;
+}
+
+.hero-text h1{
+    font-size:65px;
+    color:white;
+    font-weight:700;
+    line-height:1.2;
+}
+
+.hero-text p{
+    color:#cbd5e1;
+    margin-top:25px;
+    font-size:20px;
+    line-height:1.8;
+}
+
+.hero-buttons{
+    margin-top:35px;
+}
+
+.hero-btn-primary{
+    background:linear-gradient(135deg,#2563eb,#38bdf8);
+    color:white;
+    padding:15px 35px;
+    border-radius:40px;
+    margin-right:15px;
+}
+
+.hero-btn-secondary{
+    border:1px solid white;
+    color:white;
+    padding:15px 35px;
+    border-radius:40px;
+}
+
+.hero-image{
+    width:100%;
+    max-width:600px;
+    border-radius:30px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.4);
+}
+
+/* ========================================= */
+/* FEATURES */
+/* ========================================= */
+
+.features-section{
+    padding:120px 0;
+    background:white;
+}
+
+.section-title h2{
+    font-size:45px;
+    font-weight:700;
+}
+
+.section-title p{
+    color:#64748b;
+    margin-top:15px;
+}
+
+.feature-card{
+    background:white;
+    border-radius:25px;
+    padding:40px 25px;
+    text-align:center;
+    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+    transition:0.4s;
+}
+
+.feature-card:hover{
+    transform:translateY(-10px);
+}
+
+.feature-icon{
+    width:80px;
+    height:80px;
+    margin:auto;
+    border-radius:50%;
+    background:linear-gradient(135deg,#2563eb,#38bdf8);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    margin-bottom:25px;
+}
+
+/* ========================================= */
+/* ANALYTICS */
+/* ========================================= */
+
+.analytics-section{
+    padding:120px 0;
+    background:#0f172a;
+}
+
+.analytics-image{
+    width:100%;
+    border-radius:25px;
+}
+
+.analytics-content h2{
+    color:white;
+    font-size:50px;
+    font-weight:700;
+}
+
+.analytics-content p{
+    color:#cbd5e1;
+    margin-top:25px;
+    line-height:1.8;
+}
+
+.point{
+    margin-top:20px;
+    color:white;
+    font-size:18px;
+}
+
+.point i{
+    color:#38bdf8;
+    margin-right:10px;
+}
+
+/* ========================================= */
+/* COUNTERS */
+/* ========================================= */
+
+.counter-section{
+    padding:100px 0;
+    background:white;
+}
+
+.counter-card{
+    background:#f8fafc;
+    padding:40px;
+    border-radius:25px;
+    transition:0.3s;
+}
+
+.counter-card:hover{
+    transform:translateY(-10px);
+}
+
+.counter-card h2{
+    font-size:50px;
+    color:#2563eb;
+    font-weight:700;
+}
+
+/* ========================================= */
+/* WORKFLOW */
+/* ========================================= */
+
+.workflow-section{
+    padding:120px 0;
+    background:#f8fafc;
+}
+
+.workflow-card{
+    background:white;
+    padding:40px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+}
+
+.workflow-number{
+    width:70px;
+    height:70px;
+    background:linear-gradient(135deg,#2563eb,#38bdf8);
+    color:white;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+    font-weight:700;
+    margin:auto auto 25px;
+}
+
+/* ========================================= */
+/* TESTIMONIALS */
+/* ========================================= */
+
+.testimonial-section{
+    padding:120px 0;
+    background:white;
+}
+
+.testimonial-card{
+    background:#f8fafc;
+    padding:40px;
+    border-radius:25px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+/* ========================================= */
+/* FOOTER */
+/* ========================================= */
+
+.footer-section{
+    padding:80px 0 30px;
+    background:#020617;
+    color:white;
+}
+
+.footer-section ul{
+    list-style:none;
+    padding:0;
+}
+
+.footer-section ul li{
+    margin-top:10px;
+}
+
+.footer-section ul li a{
+    color:#cbd5e1;
+    text-decoration:none;
+}
+
+.social-icons i{
+    font-size:24px;
+    margin-right:15px;
+    margin-top:15px;
+    cursor:pointer;
+}
+
+/* ========================================= */
+/* RESPONSIVE */
+/* ========================================= */
+
+@media(max-width:768px){
+
+    .hero-text h1{
+        font-size:42px;
+    }
+
+    .hero-text{
+        text-align:center;
+    }
+
+    .hero-image{
+        margin-top:50px;
+    }
+
+}

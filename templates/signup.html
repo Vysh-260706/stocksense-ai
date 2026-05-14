@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StockSense AI - Signup</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Auth CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
+
+</head>
+
+<body>
+
+<div class="auth-container">
+
+    <!-- LEFT SIDE -->
+    <div class="auth-left">
+
+        <div>
+            <h1>StockSense AI</h1>
+
+            <p>
+                AI-powered inventory management platform designed for
+                smart stock tracking, sales analytics, low stock alerts,
+                and business insights.
+            </p>
+
+            <ul>
+                <li>✔ Smart Inventory Tracking</li>
+                <li>✔ AI Sales Analytics</li>
+                <li>✔ Low Stock Monitoring</li>
+                <li>✔ Professional Dashboard</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="auth-right">
+
+        <div class="auth-card">
+
+            <h2>Create Account</h2>
+
+            <p>
+                Register to access StockSense AI dashboard
+            </p>
+
+            <form method="POST">
+
+                <div class="input-group">
+                    <label>Username</label>
+                    <input type="text"
+                    name="username"
+                    placeholder="Enter username"
+                    required>
+                </div>
+
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password"
+                    name="password"
+                    placeholder="Enter password"
+                    required>
+                </div>
+
+                <div class="input-group">
+                    <label>Confirm Password</label>
+                    <input type="password"
+                    name="confirm_password"
+                    placeholder="Confirm password"
+                    required>
+                </div>
+
+                <button type="submit">
+                    Create Account
+                </button>
+
+            </form>
+
+            <div class="bottom-text">
+                Already have an account?
+                <a href="/login">Login</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

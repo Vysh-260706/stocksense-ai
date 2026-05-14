@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Profile</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='dashboard.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="profile-container">
+
+    <div class="profile-card">
+
+        <div class="profile-header">
+
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
+
+            <h2>Administrator Profile</h2>
+
+        </div>
+
+        <div class="profile-details">
+
+            <div class="profile-box">
+                <h4>Username</h4>
+                <p>{{ session['username'] }}</p>
+            </div>
+
+            <div class="profile-box">
+                <h4>Role</h4>
+                <p>Inventory Administrator</p>
+            </div>
+
+            <div class="profile-box">
+                <h4>System</h4>
+                <p>StockSense AI Inventory Management</p>
+            </div>
+
+            <div class="profile-box">
+                <h4>Status</h4>
+                <p>Active</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
