@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,106 +21,291 @@
 
 <body>
 
+<!-- SIDEBAR -->
+
 <div class="sidebar">
 
     <h2>StockSense AI</h2>
 
     <ul>
+
         <li><a href="/dashboard">Dashboard</a></li>
+
         <li><a href="/products">Products</a></li>
+
         <li><a href="/sales">Sales</a></li>
+
         <li><a href="/lowstock">Low Stock</a></li>
+
         <li><a href="/analytics">Analytics</a></li>
+
         <li><a href="/profile">Profile</a></li>
+
         <li><a href="/logout">Logout</a></li>
+
     </ul>
 
 </div>
 
+<!-- MAIN CONTENT -->
+
 <div class="main-content">
 
+    <!-- TOP NAVBAR -->
+
     <div class="top-navbar">
+
         <h3>Welcome to StockSense AI Dashboard</h3>
-        <p>AI-powered smart inventory management system.</p>
+
+        <p>
+            AI-powered smart inventory management system.
+        </p>
+
     </div>
+
+    <!-- DASHBOARD CARDS -->
 
     <div class="row mt-4">
 
-        <div class="col-md-3">
+        <div class="col-lg-3 col-md-6">
+
             <div class="dashboard-card blue-card">
+
                 <h5>Total Products</h5>
-                <h2>120</h2>
+
+                <h2>{{ total_products }}</h2>
+
             </div>
+
         </div>
 
-        <div class="col-md-3">
+        <div class="col-lg-3 col-md-6">
+
             <div class="dashboard-card green-card">
+
                 <h5>Total Sales</h5>
-                <h2>₹85K</h2>
+
+                <h2>{{ total_sales }}</h2>
+
             </div>
+
         </div>
 
-        <div class="col-md-3">
+        <div class="col-lg-3 col-md-6">
+
             <div class="dashboard-card orange-card">
+
                 <h5>Available Stock</h5>
-                <h2>540</h2>
+
+                <h2>{{ available_stock }}</h2>
+
             </div>
+
         </div>
 
-        <div class="col-md-3">
+        <div class="col-lg-3 col-md-6">
+
             <div class="dashboard-card red-card">
+
                 <h5>Low Stock</h5>
-                <h2>18</h2>
+
+                <h2>{{ low_stock }}</h2>
+
             </div>
+
         </div>
 
     </div>
+
+    <!-- INVENTORY TABLE -->
 
     <div class="table-section mt-5">
 
         <h3>Recent Inventory Activity</h3>
 
-        <table class="table table-hover mt-4">
+        <table class="table mt-4">
 
             <thead>
+
                 <tr>
+
                     <th>Product</th>
+
                     <th>Category</th>
+
                     <th>Stock</th>
+
                     <th>Status</th>
+
                 </tr>
+
             </thead>
 
             <tbody>
 
                 <tr>
+
                     <td>Rice Bag</td>
+
                     <td>Food</td>
+
                     <td>120</td>
-                    <td><span class="badge bg-success">Available</span></td>
+
+                    <td>
+                        <span class="status-available">
+                            Available
+                        </span>
+                    </td>
+
                 </tr>
 
                 <tr>
+
                     <td>Milk Packet</td>
+
                     <td>Dairy</td>
+
                     <td>70</td>
-                    <td><span class="badge bg-success">Available</span></td>
+
+                    <td>
+                        <span class="status-available">
+                            Available
+                        </span>
+                    </td>
+
                 </tr>
 
                 <tr>
+
                     <td>Soap</td>
+
                     <td>Cosmetics</td>
+
                     <td>30</td>
-                    <td><span class="badge bg-warning text-dark">Low Stock</span></td>
+
+                    <td>
+                        <span class="status-low">
+                            Low Stock
+                        </span>
+                    </td>
+
                 </tr>
 
             </tbody>
 
         </table>
 
+        <!-- PDF EXPORT BUTTON -->
+
+        <div class="mt-4">
+
+            <a href="/export_pdf" class="export-btn">
+
+                Export Stock Report as PDF
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- AI REORDER SUGGESTIONS -->
+
+    <div class="table-section mt-5">
+
+        <h3>AI Reorder Suggestions</h3>
+
+        <table class="table mt-4">
+
+            <thead>
+
+                <tr>
+
+                    <th>Product</th>
+
+                    <th>Current Stock</th>
+
+                    <th>Suggested Reorder</th>
+
+                    <th>Priority</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+
+                    <td>Soap</td>
+
+                    <td>30</td>
+
+                    <td>Order 120 Units</td>
+
+                    <td>
+                        <span class="status-danger">
+                            High
+                        </span>
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Milk Packet</td>
+
+                    <td>70</td>
+
+                    <td>Order 80 Units</td>
+
+                    <td>
+                        <span class="status-low">
+                            Medium
+                        </span>
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Rice Bag</td>
+
+                    <td>120</td>
+
+                    <td>Stock Stable</td>
+
+                    <td>
+                        <span class="status-available">
+                            Low
+                        </span>
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <!-- AI INSIGHT BOX -->
+
+        <div class="reorder-box">
+
+            <h4>AI Inventory Insight</h4>
+
+            <p>
+                Based on current inventory movement and sales trends,
+                Soap products require immediate restocking to avoid stock shortages.
+                Dairy products show medium demand growth and may require reorder within 3 days.
+                Rice inventory is stable and sufficient for current demand.
+            </p>
+
+        </div>
+
     </div>
 
 </div>
 
 </body>
+
 </html>

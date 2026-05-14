@@ -16,9 +16,13 @@ body{
     width:270px;
     height:100vh;
     position:fixed;
+    top:0;
+    left:0;
     background:linear-gradient(180deg,#020617,#0f172a);
     padding:30px 20px;
     color:white;
+    box-shadow:5px 0 20px rgba(0,0,0,0.15);
+    overflow-y:auto;
 }
 
 .sidebar h2{
@@ -42,11 +46,16 @@ body{
     color:#f8fafc;
     font-size:18px;
     transition:0.3s;
+    display:block;
+    padding:12px 18px;
+    border-radius:12px;
+    font-weight:500;
 }
 
 .sidebar ul li a:hover{
+    background:#1e293b;
     color:#38bdf8;
-    padding-left:8px;
+    padding-left:24px;
 }
 
 /* MAIN CONTENT */
@@ -78,7 +87,7 @@ body{
     font-size:19px;
 }
 
-/* CARDS */
+/* DASHBOARD CARDS */
 
 .dashboard-card{
     padding:35px;
@@ -87,6 +96,11 @@ body{
     box-shadow:0 12px 25px rgba(0,0,0,0.12);
     transition:0.3s;
     margin-top:25px;
+    min-height:180px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
 }
 
 .dashboard-card:hover{
@@ -104,6 +118,7 @@ body{
     font-size:50px;
     font-weight:700;
     color:white;
+    word-break:break-word;
 }
 
 /* CARD COLORS */
@@ -124,7 +139,7 @@ body{
     background:linear-gradient(135deg,#dc2626,#ef4444);
 }
 
-/* TABLE */
+/* TABLE SECTION */
 
 .table-section{
     background:white;
@@ -138,20 +153,103 @@ body{
     font-size:32px;
     margin-bottom:25px;
     font-weight:700;
+    color:#0f172a;
 }
 
+/* TABLE DESIGN */
+
 .table{
-    border-radius:15px;
+    width:100%;
+    border-collapse:collapse;
+    border-radius:18px;
     overflow:hidden;
 }
 
+.table thead{
+    background:#0f172a;
+}
+
 .table th{
-    background:#f8fafc;
-    font-size:18px;
+    color:white !important;
+    font-size:17px;
+    padding:18px;
+    text-align:left;
+    font-weight:600;
+    border:none;
 }
 
 .table td{
+    font-size:16px;
+    padding:18px 16px;
+    border-bottom:1px solid #e2e8f0;
+    color:#1e293b;
+    background:white;
+    vertical-align:middle;
+}
+
+.table tr:hover td{
+    background:#f8fafc;
+}
+
+/* STATUS BADGES */
+
+.status-available{
+    background:#16a34a;
+    color:white;
+    padding:8px 16px;
+    border-radius:25px;
+    font-size:14px;
+    font-weight:600;
+    display:inline-block;
+    min-width:120px;
+    text-align:center;
+}
+
+.status-low{
+    background:#facc15;
+    color:black;
+    padding:8px 16px;
+    border-radius:25px;
+    font-size:14px;
+    font-weight:600;
+    display:inline-block;
+    min-width:120px;
+    text-align:center;
+}
+
+.status-danger{
+    background:#dc2626;
+    color:white;
+    padding:8px 16px;
+    border-radius:25px;
+    font-size:14px;
+    font-weight:600;
+    display:inline-block;
+    min-width:120px;
+    text-align:center;
+}
+
+/* EXPORT BUTTON */
+
+.export-btn{
+    display:inline-block;
+    margin-top:25px;
+    padding:14px 28px;
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+    color:white;
+    text-decoration:none;
+    border:none;
+    border-radius:14px;
     font-size:17px;
+    font-weight:600;
+    transition:0.3s;
+    box-shadow:0 8px 20px rgba(37,99,235,0.3);
+}
+
+.export-btn:hover{
+    transform:translateY(-3px);
+    background:linear-gradient(135deg,#1d4ed8,#2563eb);
+    color:white;
 }
 
 /* PROFILE PAGE */
@@ -209,10 +307,97 @@ body{
 .profile-box h4{
     color:#64748b;
     margin-bottom:10px;
+    font-size:18px;
 }
 
 .profile-box p{
     font-size:22px;
     font-weight:600;
     color:#0f172a;
+}
+
+/* REORDER SECTION */
+
+.reorder-box{
+    background:#eff6ff;
+    border-left:6px solid #2563eb;
+    padding:20px;
+    border-radius:18px;
+    margin-top:20px;
+}
+
+.reorder-box h4{
+    color:#1d4ed8;
+    margin-bottom:10px;
+    font-size:22px;
+}
+
+.reorder-box p{
+    color:#334155;
+    font-size:16px;
+    line-height:1.7;
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#94a3b8;
+    border-radius:10px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1200px){
+
+    .dashboard-card h2{
+        font-size:38px;
+    }
+
+}
+
+@media(max-width:992px){
+
+    body{
+        display:block;
+    }
+
+    .sidebar{
+        width:100%;
+        height:auto;
+        position:relative;
+    }
+
+    .main-content{
+        margin-left:0;
+        width:100%;
+    }
+
+    .dashboard-card{
+        min-height:auto;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .top-navbar h3{
+        font-size:30px;
+    }
+
+    .dashboard-card h2{
+        font-size:34px;
+    }
+
+    .table-section{
+        overflow-x:auto;
+    }
+
+    .table{
+        min-width:700px;
+    }
+
 }
