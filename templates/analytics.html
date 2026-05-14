@@ -1,87 +1,106 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Analytics | StockSense AI</title>
 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StockSense AI Analytics</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+
+    <!-- CHART JS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-
-    <style>
-
-        body{
-            background:#f4f7fc;
-            font-family:'Poppins',sans-serif;
-        }
-
-        .container-box{
-            padding:40px;
-        }
-
-        .chart-card{
-            background:white;
-            padding:25px;
-            border-radius:20px;
-            box-shadow:0 5px 20px rgba(0,0,0,0.08);
-            margin-bottom:30px;
-        }
-
-        h1{
-            font-weight:700;
-            margin-bottom:30px;
-        }
-
-    </style>
 
 </head>
 
 <body>
 
-    <div class="container container-box">
+<!-- SIDEBAR -->
 
-        <h1>StockSense AI Analytics Dashboard</h1>
+<div class="sidebar">
 
-        <div class="row">
+    <h2>StockSense AI</h2>
 
-            <div class="col-md-6">
+    <ul>
 
-                <div class="chart-card">
+        <li><a href="/dashboard">Dashboard</a></li>
 
-                    <h4>Total Product Sales</h4>
+        <li><a href="/products">Products</a></li>
 
-                    <canvas id="salesChart"></canvas>
+        <li><a href="/sales">Sales</a></li>
 
-                </div>
+        <li><a href="/lowstock">Low Stock</a></li>
 
-            </div>
+        <li><a href="/analytics">Analytics</a></li>
 
-            <div class="col-md-6">
+        <li><a href="/profile">Profile</a></li>
 
-                <div class="chart-card">
+        <li><a href="/logout">Logout</a></li>
 
-                    <h4>Stock Availability</h4>
+    </ul>
 
-                    <canvas id="stockChart"></canvas>
+</div>
 
-                </div>
+<!-- MAIN CONTENT -->
+
+<div class="main-content">
+
+    <!-- TOP -->
+
+    <div class="top-navbar">
+
+        <h3>Business Analytics Dashboard</h3>
+
+        <p>
+            Smart AI-powered inventory and sales analytics.
+        </p>
+
+    </div>
+
+    <!-- ANALYTICS CARDS -->
+
+    <div class="row mt-4">
+
+        <div class="col-md-4">
+
+            <div class="dashboard-card blue-card">
+
+                <h5>Total Revenue</h5>
+
+                <h2>₹85K</h2>
 
             </div>
 
         </div>
 
-        <div class="row">
+        <div class="col-md-4">
 
-            <div class="col-md-12">
+            <div class="dashboard-card green-card">
 
-                <div class="chart-card">
+                <h5>Sales Growth</h5>
 
-                    <h4>Monthly Revenue Analysis</h4>
+                <h2>+12%</h2>
 
-                    <canvas id="revenueChart"></canvas>
+            </div>
 
-                </div>
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="dashboard-card orange-card">
+
+                <h5>Top Category</h5>
+
+                <h2>Food</h2>
 
             </div>
 
@@ -89,94 +108,98 @@
 
     </div>
 
+    <!-- CHARTS -->
+
+    <div class="row mt-5">
+
+        <!-- BAR CHART -->
+
+        <div class="col-lg-6">
+
+            <div class="table-section">
+
+                <h3>Monthly Sales</h3>
+
+                <canvas id="salesChart"></canvas>
+
+            </div>
+
+        </div>
+
+        <!-- PIE CHART -->
+
+        <div class="col-lg-6">
+
+            <div class="table-section">
+
+                <h3>Inventory Categories</h3>
+
+                <canvas id="stockChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- AI INSIGHT -->
+
+    <div class="reorder-box mt-5">
+
+        <h4>AI Business Insight</h4>
+
+        <p>
+
+            AI analysis indicates strong growth in Food and Dairy categories.
+            Cosmetic inventory levels are reducing rapidly and require immediate restocking.
+            Current monthly sales trends predict an additional 18% growth next month.
+
+        </p>
+
+    </div>
+
+</div>
+
+<!-- CHART SCRIPT -->
+
 <script>
 
-    // SALES CHART
-
-    new Chart(document.getElementById('salesChart'), {
-
+const salesChart = new Chart(
+    document.getElementById('salesChart'),
+    {
         type: 'bar',
-
         data: {
-
-            labels: ['Rice','Milk','Oil','Soap','Sugar'],
-
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
             datasets: [{
-
                 label: 'Sales',
-
-                data: [120,190,300,150,210],
-
-                backgroundColor: [
-                    '#2563eb',
-                    '#0ea5e9',
-                    '#06b6d4',
-                    '#3b82f6',
-                    '#60a5fa'
-                ]
-
+                data: [12, 19, 10, 25, 22, 30],
+                borderWidth: 1
             }]
+        },
+        options: {
+            responsive:true
         }
+    }
+);
 
-    });
-
-
-    // STOCK CHART
-
-    new Chart(document.getElementById('stockChart'), {
-
+const stockChart = new Chart(
+    document.getElementById('stockChart'),
+    {
         type: 'pie',
-
         data: {
-
-            labels: ['Available','Low Stock','Out Of Stock'],
-
+            labels: ['Food', 'Dairy', 'Cosmetics', 'Beverages'],
             datasets: [{
-
-                data: [65,25,10],
-
-                backgroundColor: [
-                    '#22c55e',
-                    '#f59e0b',
-                    '#ef4444'
-                ]
-
+                data: [35, 25, 20, 20]
             }]
+        },
+        options: {
+            responsive:true
         }
-
-    });
-
-
-    // REVENUE CHART
-
-    new Chart(document.getElementById('revenueChart'), {
-
-        type: 'line',
-
-        data: {
-
-            labels: ['Jan','Feb','Mar','Apr','May','Jun'],
-
-            datasets: [{
-
-                label: 'Revenue',
-
-                data: [1200,1900,3000,2500,4200,5000],
-
-                borderColor: '#2563eb',
-
-                backgroundColor: '#93c5fd',
-
-                fill:true,
-
-                tension:0.4
-
-            }]
-        }
-
-    });
+    }
+);
 
 </script>
 
 </body>
+
 </html>

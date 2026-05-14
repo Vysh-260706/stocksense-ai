@@ -1,0 +1,193 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StockSense AI Prediction</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+
+    <style>
+
+        .prediction-container{
+            max-width:700px;
+            margin:auto;
+            background:white;
+            padding:40px;
+            border-radius:25px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .prediction-title{
+            font-size:36px;
+            font-weight:700;
+            color:#0f172a;
+            margin-bottom:10px;
+        }
+
+        .prediction-subtitle{
+            color:#64748b;
+            margin-bottom:35px;
+        }
+
+        .prediction-form label{
+            font-weight:600;
+            margin-bottom:8px;
+            color:#1e293b;
+        }
+
+        .prediction-form input{
+            width:100%;
+            padding:15px;
+            border-radius:14px;
+            border:1px solid #cbd5e1;
+            margin-bottom:25px;
+            outline:none;
+            transition:0.3s;
+        }
+
+        .prediction-form input:focus{
+            border-color:#2563eb;
+            box-shadow:0 0 10px rgba(37,99,235,0.2);
+        }
+
+        .predict-btn{
+            width:100%;
+            padding:16px;
+            border:none;
+            border-radius:14px;
+            background:linear-gradient(135deg,#2563eb,#3b82f6);
+            color:white;
+            font-size:18px;
+            font-weight:600;
+            transition:0.3s;
+        }
+
+        .predict-btn:hover{
+            transform:translateY(-3px);
+        }
+
+        .result-box{
+            margin-top:35px;
+            padding:25px;
+            border-radius:18px;
+            background:#eff6ff;
+            border-left:6px solid #2563eb;
+        }
+
+        .result-box h4{
+            color:#2563eb;
+            margin-bottom:10px;
+        }
+
+        .result-box p{
+            font-size:22px;
+            font-weight:700;
+            color:#0f172a;
+            margin:0;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+    <h2>StockSense AI</h2>
+
+    <ul>
+
+        <li><a href="/dashboard">Dashboard</a></li>
+
+        <li><a href="/products">Products</a></li>
+
+        <li><a href="/sales">Sales</a></li>
+
+        <li><a href="/lowstock">Low Stock</a></li>
+
+        <li><a href="/analytics">Analytics</a></li>
+
+        <li><a href="/prediction">Prediction</a></li>
+
+        <li><a href="/profile">Profile</a></li>
+
+        <li><a href="/logout">Logout</a></li>
+
+    </ul>
+
+</div>
+
+<!-- MAIN CONTENT -->
+
+<div class="main-content">
+
+    <div class="prediction-container">
+
+        <h2 class="prediction-title">
+            AI Demand Prediction
+        </h2>
+
+        <p class="prediction-subtitle">
+            Predict future inventory demand using AI-powered analytics.
+        </p>
+
+        <form method="POST" class="prediction-form">
+
+            <label>Inventory Level</label>
+
+            <input type="number"
+            name="inventory"
+            placeholder="Enter current inventory level"
+            required>
+
+            <label>Units Sold</label>
+
+            <input type="number"
+            name="sales"
+            placeholder="Enter units sold"
+            required>
+
+            <button type="submit" class="predict-btn">
+                Predict Future Demand
+            </button>
+
+        </form>
+
+        {% if prediction %}
+
+        <div class="result-box">
+
+            <h4>Prediction Result</h4>
+
+            <p>
+                Predicted Future Demand:
+                {{ prediction }} Units
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
+```

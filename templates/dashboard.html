@@ -39,6 +39,9 @@
 
         <li><a href="/analytics">Analytics</a></li>
 
+        <!-- NEW ML PREDICTION PAGE -->
+        <li><a href="/prediction">ML Prediction</a></li>
+
         <li><a href="/profile">Profile</a></li>
 
         <li><a href="/logout">Logout</a></li>
@@ -53,13 +56,57 @@
 
     <!-- TOP NAVBAR -->
 
-    <div class="top-navbar">
+    <div class="top-navbar d-flex justify-content-between align-items-center flex-wrap">
 
-        <h3>Welcome to StockSense AI Dashboard</h3>
+        <div>
 
-        <p>
-            AI-powered smart inventory management system.
-        </p>
+            <h3>Welcome to StockSense AI Dashboard</h3>
+
+            <p>
+                AI-powered smart inventory management system.
+            </p>
+
+        </div>
+
+        <!-- DARK MODE BUTTON -->
+
+        <button class="dark-mode-btn" onclick="toggleDarkMode()">
+            🌙 Dark Mode
+        </button>
+
+    </div>
+
+    <!-- NOTIFICATION CARDS -->
+
+    <div class="row mt-4">
+
+        <div class="col-md-6">
+
+            <div class="notification-card warning-card">
+
+                <h5>🔔 Stock Alert</h5>
+
+                <p>
+                    {{ low_stock }} products require urgent restock.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="notification-card success-card">
+
+                <h5>📈 Sales Update</h5>
+
+                <p>
+                    Sales increased by 12% this week.
+                </p>
+
+            </div>
+
+        </div>
 
     </div>
 
@@ -305,6 +352,18 @@
     </div>
 
 </div>
+
+<!-- DARK MODE SCRIPT -->
+
+<script>
+
+function toggleDarkMode(){
+
+    document.body.classList.toggle("dark-mode");
+
+}
+
+</script>
 
 </body>
 

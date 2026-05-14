@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, request, redirect, session, send_file
 from pymongo import MongoClient
 import pandas as pd
@@ -20,6 +21,7 @@ from reportlab.lib.pagesizes import letter
 # =========================================
 
 app = Flask(__name__)
+
 app.secret_key = "StockSense_secret"
 
 # =========================================
@@ -41,9 +43,11 @@ users_collection = db["users"]
 DATASET_PATH = "dataset/retail_store_inventory.csv"
 
 try:
+
     data = pd.read_csv(DATASET_PATH)
 
 except:
+
     data = pd.DataFrame()
 
 # =========================================
@@ -51,9 +55,11 @@ except:
 # =========================================
 
 try:
+
     model = joblib.load("inventory_model.pkl")
 
 except:
+
     model = None
 
 # =========================================
@@ -77,10 +83,12 @@ def signup():
     if request.method == 'POST':
 
         username = request.form['username']
+
         password = request.form['password']
+
         confirm_password = request.form['confirm_password']
 
-        # PASSWORD MATCH CHECK
+        # PASSWORD CHECK
 
         if password != confirm_password:
 
@@ -94,7 +102,9 @@ def signup():
         # EXISTING USER CHECK
 
         existing_user = users_collection.find_one({
+
             "username": username
+
         })
 
         if existing_user:
@@ -111,6 +121,7 @@ def signup():
         users_collection.insert_one({
 
             "username": username,
+
             "password": password
 
         })
@@ -134,11 +145,13 @@ def login():
     if request.method == 'POST':
 
         username = request.form['username']
+
         password = request.form['password']
 
         user = users_collection.find_one({
 
             "username": username,
+
             "password": password
 
         })
@@ -171,44 +184,57 @@ def login():
 def dashboard():
 
     if 'username' not in session:
+
         return redirect('/login')
 
     # TOTAL PRODUCTS
 
     try:
+
         total_products = len(data)
 
     except:
+
         total_products = 0
 
     # TOTAL SALES
 
     try:
-        total_sales = int(data['Units Sold'].sum())
+
+        total_sales = int(
+            data['Units Sold'].sum()
+        )
 
     except:
+
         total_sales = 0
 
     # AVAILABLE STOCK
 
     try:
+
         available_stock = int(
             data['Inventory Level'].sum()
         )
 
     except:
+
         available_stock = 0
 
     # LOW STOCK COUNT
 
     try:
 
-        # LESS THAN OR EQUAL TO 50
         low_stock = len(
-            data[data['Inventory Level'] <= 50]
+
+            data[
+                data['Inventory Level'] <= 50
+            ]
+
         )
 
     except:
+
         low_stock = 0
 
     return render_template(
@@ -233,6 +259,7 @@ def dashboard():
 def products():
 
     if 'username' not in session:
+
         return redirect('/login')
 
     try:
@@ -242,6 +269,7 @@ def products():
         )
 
     except:
+
         products_data = []
 
     return render_template(
@@ -260,6 +288,7 @@ def products():
 def sales():
 
     if 'username' not in session:
+
         return redirect('/login')
 
     try:
@@ -269,6 +298,7 @@ def sales():
         )
 
     except:
+
         sales_data = []
 
     return render_template(
@@ -287,16 +317,15 @@ def sales():
 def lowstock():
 
     if 'username' not in session:
+
         return redirect('/login')
 
     try:
 
-        # FILTER LOW STOCK ITEMS
         lowstock_df = data[
             data['Inventory Level'] <= 50
         ]
 
-        # IF EMPTY
         if lowstock_df.empty:
 
             lowstock_df = data.head(10)
@@ -325,9 +354,64 @@ def lowstock():
 def analytics():
 
     if 'username' not in session:
+
         return redirect('/login')
 
-    return render_template('analytics.html')
+    return render_template(
+        'analytics.html'
+    )
+
+# =========================================
+# PREDICTION PAGE
+# =========================================
+
+@app.route('/prediction', methods=['GET', 'POST'])
+def prediction():
+
+    if 'username' not in session:
+
+        return redirect('/login')
+
+    prediction_result = None
+
+    if request.method == 'POST':
+
+        try:
+
+            inventory = float(
+                request.form['inventory']
+            )
+
+            sales = float(
+                request.form['sales']
+            )
+
+            # SIMPLE AI PREDICTION
+
+            prediction_result = int(
+
+                (sales * 1.5) -
+                (inventory * 0.2)
+
+            )
+
+            # AVOID NEGATIVE VALUE
+
+            if prediction_result < 0:
+
+                prediction_result = 0
+
+        except:
+
+            prediction_result = 0
+
+    return render_template(
+
+        'prediction.html',
+
+        prediction=prediction_result
+
+    )
 
 # =========================================
 # PROFILE PAGE
@@ -337,6 +421,7 @@ def analytics():
 def profile():
 
     if 'username' not in session:
+
         return redirect('/login')
 
     return render_template(
@@ -355,6 +440,7 @@ def profile():
 def export_pdf():
 
     if 'username' not in session:
+
         return redirect('/login')
 
     pdf_file = "stock_report.pdf"
@@ -392,8 +478,11 @@ def export_pdf():
     table_data = [[
 
         "Product ID",
+
         "Category",
+
         "Inventory",
+
         "Units Sold"
 
     ]]
@@ -415,6 +504,7 @@ def export_pdf():
             ])
 
     except:
+
         pass
 
     # TABLE
@@ -469,3 +559,4 @@ def logout():
 if __name__ == "__main__":
 
     app.run(debug=True)
+

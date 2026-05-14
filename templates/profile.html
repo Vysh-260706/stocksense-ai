@@ -1,60 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Admin Profile</title>
+    <title>Profile - StockSense AI</title>
 
-    <link rel="stylesheet"
-    href="{{ url_for('static', filename='dashboard.css') }}">
+    <!-- Google Font -->
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+
+            font-family:'Poppins', sans-serif;
+
+            background:#eef2f7;
+
+            min-height:100vh;
+
+            display:flex;
+
+            justify-content:center;
+
+            align-items:center;
+
+            padding:40px;
+        }
+
+        .profile-container{
+
+            width:100%;
+            max-width:550px;
+
+            background:white;
+
+            border-radius:30px;
+
+            padding:45px;
+
+            box-shadow:0 15px 35px rgba(0,0,0,0.12);
+
+            text-align:center;
+        }
+
+        .profile-image{
+
+            width:140px;
+            height:140px;
+
+            border-radius:50%;
+
+            object-fit:cover;
+
+            margin-bottom:25px;
+
+            border:5px solid #3b82f6;
+        }
+
+        .profile-container h2{
+
+            font-size:40px;
+
+            color:#0f172a;
+
+            margin-bottom:10px;
+
+            font-weight:700;
+        }
+
+        .designation{
+
+            color:#64748b;
+
+            font-size:20px;
+
+            margin-bottom:35px;
+        }
+
+        .info-box{
+
+            text-align:left;
+
+            margin-bottom:20px;
+        }
+
+        .info-box label{
+
+            display:block;
+
+            margin-bottom:10px;
+
+            font-weight:600;
+
+            color:#1e293b;
+
+            font-size:16px;
+        }
+
+        .info-field{
+
+            width:100%;
+
+            padding:16px;
+
+            border:none;
+
+            outline:none;
+
+            background:#f1f5f9;
+
+            border-radius:14px;
+
+            font-size:17px;
+
+            color:#0f172a;
+
+            font-weight:500;
+        }
+
+        .dashboard-btn{
+
+            display:inline-block;
+
+            margin-top:25px;
+
+            background:linear-gradient(135deg,#2563eb,#3b82f6);
+
+            color:white;
+
+            text-decoration:none;
+
+            padding:14px 28px;
+
+            border-radius:14px;
+
+            font-size:17px;
+
+            font-weight:600;
+
+            transition:0.3s;
+
+            box-shadow:0 10px 25px rgba(37,99,235,0.3);
+        }
+
+        .dashboard-btn:hover{
+
+            transform:translateY(-3px);
+
+            color:white;
+        }
+
+    </style>
 
 </head>
 
 <body>
 
-<div class="profile-container">
+    <div class="profile-container">
 
-    <div class="profile-card">
+        <img 
+            src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+            class="profile-image"
+        >
 
-        <div class="profile-header">
+        <h2>Vyshnavi</h2>
 
-            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
+        <p class="designation">
+            Inventory Management Administrator
+        </p>
 
-            <h2>Administrator Profile</h2>
+        <div class="info-box">
 
-        </div>
+            <label>Role</label>
 
-        <div class="profile-details">
-
-            <div class="profile-box">
-                <h4>Username</h4>
-                <p>{{ session['username'] }}</p>
-            </div>
-
-            <div class="profile-box">
-                <h4>Role</h4>
-                <p>Inventory Administrator</p>
-            </div>
-
-            <div class="profile-box">
-                <h4>System</h4>
-                <p>StockSense AI Inventory Management</p>
-            </div>
-
-            <div class="profile-box">
-                <h4>Status</h4>
-                <p>Active</p>
+            <div class="info-field">
+                System Administrator
             </div>
 
         </div>
+
+        <div class="info-box">
+
+            <label>Department</label>
+
+            <div class="info-field">
+                Inventory Management
+            </div>
+
+        </div>
+
+        <div class="info-box">
+
+            <label>System</label>
+
+            <div class="info-field">
+                StockSense AI Platform
+            </div>
+
+        </div>
+
+        <a href="/dashboard" class="dashboard-btn">
+            ← Back to Dashboard
+        </a>
 
     </div>
 
-</div>
-
 </body>
+
 </html>

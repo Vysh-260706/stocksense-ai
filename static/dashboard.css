@@ -8,6 +8,7 @@ body{
     font-family:'Poppins', sans-serif;
     background:#eef2f7;
     display:flex;
+    transition:0.3s;
 }
 
 /* SIDEBAR */
@@ -22,7 +23,6 @@ body{
     padding:30px 20px;
     color:white;
     box-shadow:5px 0 20px rgba(0,0,0,0.15);
-    overflow-y:auto;
 }
 
 .sidebar h2{
@@ -47,15 +47,14 @@ body{
     font-size:18px;
     transition:0.3s;
     display:block;
-    padding:12px 18px;
+    padding:10px 15px;
     border-radius:12px;
-    font-weight:500;
 }
 
 .sidebar ul li a:hover{
     background:#1e293b;
     color:#38bdf8;
-    padding-left:24px;
+    padding-left:20px;
 }
 
 /* MAIN CONTENT */
@@ -87,6 +86,79 @@ body{
     font-size:19px;
 }
 
+/* DARK MODE BUTTON */
+
+.dark-mode-btn{
+
+    border:none;
+    padding:14px 24px;
+
+    border-radius:14px;
+
+    background:#0f172a;
+    color:white;
+
+    font-size:16px;
+    font-weight:600;
+
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.dark-mode-btn:hover{
+
+    background:#2563eb;
+    transform:translateY(-3px);
+
+}
+
+/* NOTIFICATION CARDS */
+
+.notification-card{
+
+    padding:25px;
+    border-radius:22px;
+    color:white;
+
+    margin-top:15px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,0.12);
+
+    transition:0.3s;
+}
+
+.notification-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.notification-card h5{
+
+    font-size:24px;
+    margin-bottom:12px;
+
+}
+
+.notification-card p{
+
+    font-size:16px;
+    margin-bottom:0;
+
+}
+
+.warning-card{
+
+    background:linear-gradient(135deg,#dc2626,#ef4444);
+
+}
+
+.success-card{
+
+    background:linear-gradient(135deg,#059669,#10b981);
+
+}
+
 /* DASHBOARD CARDS */
 
 .dashboard-card{
@@ -115,10 +187,9 @@ body{
 }
 
 .dashboard-card h2{
-    font-size:50px;
+    font-size:48px;
     font-weight:700;
     color:white;
-    word-break:break-word;
 }
 
 /* CARD COLORS */
@@ -180,11 +251,10 @@ body{
 
 .table td{
     font-size:16px;
-    padding:18px 16px;
+    padding:16px;
     border-bottom:1px solid #e2e8f0;
     color:#1e293b;
     background:white;
-    vertical-align:middle;
 }
 
 .table tr:hover td{
@@ -196,37 +266,28 @@ body{
 .status-available{
     background:#16a34a;
     color:white;
-    padding:8px 16px;
-    border-radius:25px;
+    padding:8px 14px;
+    border-radius:20px;
     font-size:14px;
     font-weight:600;
-    display:inline-block;
-    min-width:120px;
-    text-align:center;
 }
 
 .status-low{
     background:#facc15;
     color:black;
-    padding:8px 16px;
-    border-radius:25px;
+    padding:8px 14px;
+    border-radius:20px;
     font-size:14px;
     font-weight:600;
-    display:inline-block;
-    min-width:120px;
-    text-align:center;
 }
 
 .status-danger{
     background:#dc2626;
     color:white;
-    padding:8px 16px;
-    border-radius:25px;
+    padding:8px 14px;
+    border-radius:20px;
     font-size:14px;
     font-weight:600;
-    display:inline-block;
-    min-width:120px;
-    text-align:center;
 }
 
 /* EXPORT BUTTON */
@@ -252,118 +313,88 @@ body{
     color:white;
 }
 
-/* PROFILE PAGE */
-
-.profile-container{
-    width:100%;
-    min-height:100vh;
-    background:#eef2f7;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:40px;
-}
-
-.profile-card{
-    width:100%;
-    max-width:900px;
-    background:white;
-    border-radius:30px;
-    padding:50px;
-    box-shadow:0 15px 35px rgba(0,0,0,0.1);
-}
-
-.profile-header{
-    text-align:center;
-    margin-bottom:40px;
-}
-
-.profile-header img{
-    width:120px;
-    height:120px;
-    border-radius:50%;
-    object-fit:cover;
-    margin-bottom:20px;
-    border:5px solid #3b82f6;
-}
-
-.profile-header h2{
-    font-size:40px;
-    color:#0f172a;
-    font-weight:700;
-}
-
-.profile-details{
-    margin-top:30px;
-}
-
-.profile-box{
-    background:#f8fafc;
-    padding:25px;
-    border-radius:18px;
-    margin-bottom:20px;
-}
-
-.profile-box h4{
-    color:#64748b;
-    margin-bottom:10px;
-    font-size:18px;
-}
-
-.profile-box p{
-    font-size:22px;
-    font-weight:600;
-    color:#0f172a;
-}
-
-/* REORDER SECTION */
+/* REORDER BOX */
 
 .reorder-box{
-    background:#eff6ff;
+
+    margin-top:30px;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    background:linear-gradient(135deg,#eff6ff,#dbeafe);
+
     border-left:6px solid #2563eb;
-    padding:20px;
-    border-radius:18px;
-    margin-top:20px;
+
 }
 
 .reorder-box h4{
-    color:#1d4ed8;
-    margin-bottom:10px;
-    font-size:22px;
+
+    font-size:26px;
+    margin-bottom:15px;
+
+    color:#0f172a;
+
 }
 
 .reorder-box p{
+
+    font-size:17px;
+    line-height:1.8;
+
     color:#334155;
-    font-size:16px;
-    line-height:1.7;
+
 }
 
-/* SCROLLBAR */
+/* DARK MODE */
 
-::-webkit-scrollbar{
-    width:10px;
+.dark-mode{
+
+    background:#020617;
+
 }
 
-::-webkit-scrollbar-thumb{
-    background:#94a3b8;
-    border-radius:10px;
+.dark-mode .top-navbar,
+.dark-mode .table-section,
+.dark-mode .reorder-box{
+
+    background:#1e293b;
+    color:white;
+
+}
+
+.dark-mode .table td{
+
+    background:#1e293b;
+    color:white;
+
+}
+
+.dark-mode .table tr:hover td{
+
+    background:#334155;
+
+}
+
+.dark-mode .table th{
+
+    background:#020617;
+
+}
+
+.dark-mode .table-section h3,
+.dark-mode .top-navbar h3,
+.dark-mode .reorder-box h4,
+.dark-mode .reorder-box p{
+
+    color:white;
+
 }
 
 /* RESPONSIVE */
 
-@media(max-width:1200px){
-
-    .dashboard-card h2{
-        font-size:38px;
-    }
-
-}
-
 @media(max-width:992px){
-
-    body{
-        display:block;
-    }
 
     .sidebar{
         width:100%;
@@ -376,28 +407,16 @@ body{
         width:100%;
     }
 
-    .dashboard-card{
-        min-height:auto;
+    body{
+        display:block;
     }
 
-}
-
-@media(max-width:768px){
-
-    .top-navbar h3{
-        font-size:30px;
+    .top-navbar{
+        text-align:center;
     }
 
-    .dashboard-card h2{
-        font-size:34px;
-    }
-
-    .table-section{
-        overflow-x:auto;
-    }
-
-    .table{
-        min-width:700px;
+    .dark-mode-btn{
+        margin-top:20px;
     }
 
 }
