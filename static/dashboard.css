@@ -263,6 +263,8 @@ body{
 
 /* STATUS BADGES */
 
+/* HIGH STOCK - GREEN */
+
 .status-available{
     background:#16a34a;
     color:white;
@@ -272,7 +274,9 @@ body{
     font-weight:600;
 }
 
-.status-low{
+/* MEDIUM STOCK - YELLOW */
+
+.status-medium{
     background:#facc15;
     color:black;
     padding:8px 14px;
@@ -281,8 +285,21 @@ body{
     font-weight:600;
 }
 
-.status-danger{
+/* LOW STOCK - RED */
+
+.status-low{
     background:#dc2626;
+    color:white;
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:14px;
+    font-weight:600;
+}
+
+/* DANGER */
+
+.status-danger{
+    background:#991b1b;
     color:white;
     padding:8px 14px;
     border-radius:20px;
