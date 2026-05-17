@@ -17,6 +17,136 @@
     <!-- Dashboard CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
 
+    <style>
+
+        body{
+            font-family:'Poppins',sans-serif;
+        }
+
+        .voice-box{
+            background:white;
+            padding:25px;
+            border-radius:20px;
+            margin-top:30px;
+            box-shadow:0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .voice-btn{
+            background:#2563eb;
+            color:white;
+            border:none;
+            padding:14px 25px;
+            border-radius:12px;
+            font-weight:600;
+            transition:0.3s;
+        }
+
+        .voice-btn:hover{
+            background:#1d4ed8;
+        }
+
+        .voice-result{
+            margin-top:20px;
+            padding:18px;
+            border-radius:14px;
+            background:#eff6ff;
+            font-weight:600;
+            color:#0f172a;
+            line-height:1.8;
+            min-height:90px;
+        }
+
+        .mic-status{
+            margin-top:15px;
+            color:#475569;
+            font-size:15px;
+            font-weight:500;
+        }
+
+        .listening-wave{
+            display:none;
+            margin-top:15px;
+        }
+
+        .wave{
+            display:inline-block;
+            width:6px;
+            height:25px;
+            margin:0 3px;
+            border-radius:20px;
+            background:#2563eb;
+            animation:wave 1s infinite ease-in-out;
+        }
+
+        .wave:nth-child(2){
+            animation-delay:0.2s;
+        }
+
+        .wave:nth-child(3){
+            animation-delay:0.4s;
+        }
+
+        .wave:nth-child(4){
+            animation-delay:0.6s;
+        }
+
+        .wave:nth-child(5){
+            animation-delay:0.8s;
+        }
+
+        @keyframes wave{
+
+            0%{
+                transform:scaleY(1);
+            }
+
+            50%{
+                transform:scaleY(2.2);
+            }
+
+            100%{
+                transform:scaleY(1);
+            }
+
+        }
+
+        .table-section{
+            background:white;
+            padding:25px;
+            border-radius:20px;
+            margin-top:35px;
+            box-shadow:0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .status-available{
+            background:#16a34a;
+            color:white;
+            padding:8px 14px;
+            border-radius:30px;
+            font-size:14px;
+            font-weight:600;
+        }
+
+        .status-medium{
+            background:#facc15;
+            color:black;
+            padding:8px 14px;
+            border-radius:30px;
+            font-size:14px;
+            font-weight:600;
+        }
+
+        .status-danger{
+            background:#dc2626;
+            color:white;
+            padding:8px 14px;
+            border-radius:30px;
+            font-size:14px;
+            font-weight:600;
+        }
+
+    </style>
+
 </head>
 
 <body>
@@ -30,19 +160,12 @@
     <ul>
 
         <li><a href="/dashboard">Dashboard</a></li>
-
         <li><a href="/products">Products</a></li>
-
         <li><a href="/sales">Sales</a></li>
-
         <li><a href="/lowstock">Low Stock</a></li>
-
         <li><a href="/analytics">Analytics</a></li>
-
         <li><a href="/prediction">ML Prediction</a></li>
-
         <li><a href="/profile">Profile</a></li>
-
         <li><a href="/logout">Logout</a></li>
 
     </ul>
@@ -67,11 +190,46 @@
 
         </div>
 
-        <!-- DARK MODE BUTTON -->
-
         <button class="dark-mode-btn" onclick="toggleDarkMode()">
             🌙 Dark Mode
         </button>
+
+    </div>
+
+    <!-- VOICE ASSISTANT -->
+
+    <div class="voice-box">
+
+        <h3>🎤 StockSense AI Voice Assistant</h3>
+
+        <p>
+            Say command like:
+            <b>"Rice Bag stock"</b>
+        </p>
+
+        <button class="voice-btn" onclick="startVoiceAssistant()">
+            🎙 Start Voice Assistant
+        </button>
+
+        <div class="mic-status" id="micStatus">
+            Microphone is inactive
+        </div>
+
+        <!-- SOUND WAVE -->
+
+        <div class="listening-wave" id="waveBox">
+
+            <span class="wave"></span>
+            <span class="wave"></span>
+            <span class="wave"></span>
+            <span class="wave"></span>
+            <span class="wave"></span>
+
+        </div>
+
+        <div class="voice-result" id="voiceResult">
+            Waiting for voice command...
+        </div>
 
     </div>
 
@@ -165,7 +323,7 @@
 
     <!-- INVENTORY TABLE -->
 
-    <div class="table-section mt-5">
+    <div class="table-section">
 
         <h3>Recent Inventory Activity</h3>
 
@@ -176,11 +334,8 @@
                 <tr>
 
                     <th>Product</th>
-
                     <th>Category</th>
-
                     <th>Stock</th>
-
                     <th>Status</th>
 
                 </tr>
@@ -189,247 +344,353 @@
 
             <tbody>
 
-                <!-- GROCERIES -->
-
                 <tr>
                     <td>Rice Bag</td>
                     <td>Groceries</td>
                     <td>120</td>
-                    <td>
-                        <span class="status-available">
-                            High Stock
-                        </span>
-                    </td>
+                    <td><span class="status-available">High Stock</span></td>
                 </tr>
 
                 <tr>
-                    <td>Cooking Oil</td>
-                    <td>Groceries</td>
-                    <td>45</td>
-                    <td>
-                        <span class="status-medium">
-                            Medium Stock
-                        </span>
-                    </td>
-                </tr>
-
-                <!-- TOYS -->
-
-                <tr>
-                    <td>Remote Car</td>
-                    <td>Toys</td>
-                    <td>80</td>
-                    <td>
-                        <span class="status-available">
-                            High Stock
-                        </span>
-                    </td>
+                    <td>Milk</td>
+                    <td>Dairy</td>
+                    <td>40</td>
+                    <td><span class="status-medium">Medium Stock</span></td>
                 </tr>
 
                 <tr>
-                    <td>Teddy Bear</td>
-                    <td>Toys</td>
-                    <td>25</td>
-                    <td>
-                        <span class="status-danger">
-                            Low Stock
-                        </span>
-                    </td>
-                </tr>
-
-                <!-- ELECTRONICS -->
-
-                <tr>
-                    <td>Bluetooth Speaker</td>
-                    <td>Electronics</td>
-                    <td>65</td>
-                    <td>
-                        <span class="status-medium">
-                            Medium Stock
-                        </span>
-                    </td>
+                    <td>Chocolate</td>
+                    <td>Snacks</td>
+                    <td>15</td>
+                    <td><span class="status-danger">Low Stock</span></td>
                 </tr>
 
                 <tr>
                     <td>Smart Watch</td>
                     <td>Electronics</td>
                     <td>18</td>
-                    <td>
-                        <span class="status-danger">
-                            Low Stock
-                        </span>
-                    </td>
+                    <td><span class="status-danger">Low Stock</span></td>
                 </tr>
 
-                <!-- FURNITURE -->
+                <tr>
+                    <td>Headphones</td>
+                    <td>Electronics</td>
+                    <td>75</td>
+                    <td><span class="status-available">High Stock</span></td>
+                </tr>
 
                 <tr>
                     <td>Office Chair</td>
                     <td>Furniture</td>
                     <td>55</td>
-                    <td>
-                        <span class="status-medium">
-                            Medium Stock
-                        </span>
-                    </td>
+                    <td><span class="status-medium">Medium Stock</span></td>
                 </tr>
 
                 <tr>
-                    <td>Wooden Table</td>
+                    <td>Dinning Table</td>
                     <td>Furniture</td>
                     <td>20</td>
-                    <td>
-                        <span class="status-danger">
-                            Low Stock
-                        </span>
-                    </td>
+                    <td><span class="status-danger">Low Stock</span></td>
                 </tr>
 
-                <!-- CLOTHING -->
+                <tr>
+                    <td>Cupboards</td>
+                    <td>Furniture</td>
+                    <td>65</td>
+                    <td><span class="status-medium">Medium Stock</span></td>
+                </tr>
 
                 <tr>
-                    <td>Kurthis</td>
-                    <td>Clothing</td>
+                    <td>Mirrors</td>
+                    <td>Furniture</td>
                     <td>95</td>
-                    <td>
-                        <span class="status-available">
-                            High Stock
-                        </span>
-                    </td>
+                    <td><span class="status-available">High Stock</span></td>
                 </tr>
 
                 <tr>
                     <td>Pants</td>
                     <td>Clothing</td>
                     <td>35</td>
-                    <td>
-                        <span class="status-medium">
-                            Medium Stock
-                        </span>
-                    </td>
-                </tr>
-
-            </tbody>
-
-        </table>
-
-        <!-- PDF EXPORT BUTTON -->
-
-        <div class="mt-4">
-
-            <a href="/export_pdf" class="export-btn">
-
-                Export Stock Report as PDF
-
-            </a>
-
-        </div>
-
-    </div>
-
-    <!-- AI REORDER SUGGESTIONS -->
-
-    <div class="table-section mt-5">
-
-        <h3>AI Reorder Suggestions</h3>
-
-        <table class="table mt-4">
-
-            <thead>
-
-                <tr>
-
-                    <th>Product</th>
-
-                    <th>Current Stock</th>
-
-                    <th>Suggested Reorder</th>
-
-                    <th>Priority</th>
-
-                </tr>
-
-            </thead>
-
-            <tbody>
-
-                <tr>
-
-                    <td>Smart Watch</td>
-
-                    <td>18</td>
-
-                    <td>Order 100 Units</td>
-
-                    <td>
-                        <span class="status-danger">
-                            High
-                        </span>
-                    </td>
-
+                    <td><span class="status-medium">Medium Stock</span></td>
                 </tr>
 
                 <tr>
+                    <td>Shirts</td>
+                    <td>Clothing</td>
+                    <td>85</td>
+                    <td><span class="status-available">High Stock</span></td>
+                </tr>
 
+                <tr>
                     <td>Teddy Bear</td>
-
+                    <td>Toys</td>
                     <td>25</td>
-
-                    <td>Order 60 Units</td>
-
-                    <td>
-                        <span class="status-medium">
-                            Medium
-                        </span>
-                    </td>
-
-                </tr>
-
-                <tr>
-
-                    <td>Rice Bag</td>
-
-                    <td>120</td>
-
-                    <td>Stock Stable</td>
-
-                    <td>
-                        <span class="status-available">
-                            Low
-                        </span>
-                    </td>
-
+                    <td><span class="status-danger">Low Stock</span></td>
                 </tr>
 
             </tbody>
 
         </table>
-
-        <!-- AI INSIGHT BOX -->
-
-        <div class="reorder-box">
-
-            <h4>AI Inventory Insight</h4>
-
-            <p>
-                Smart Watches and Teddy Bears require immediate restocking due to increasing customer demand.
-                Grocery products remain stable with sufficient inventory levels.
-                Clothing category products show balanced inventory movement this week.
-            </p>
-
-        </div>
 
     </div>
 
 </div>
 
-<!-- DARK MODE SCRIPT -->
+<!-- SCRIPT -->
 
 <script>
 
 function toggleDarkMode(){
 
     document.body.classList.toggle("dark-mode");
+
+}
+
+function speakText(text){
+
+    const speech = new SpeechSynthesisUtterance(text);
+
+    speech.lang = "en-US";
+
+    speech.rate = 1;
+
+    window.speechSynthesis.speak(speech);
+
+}
+
+function startVoiceAssistant(){
+
+    const micStatus = document.getElementById("micStatus");
+
+    const voiceResult = document.getElementById("voiceResult");
+
+    const waveBox = document.getElementById("waveBox");
+
+    const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+    if(!SpeechRecognition){
+
+        alert("Speech Recognition not supported");
+
+        return;
+
+    }
+
+    const recognition = new SpeechRecognition();
+
+    recognition.lang = "en-US";
+
+    recognition.continuous = false;
+
+    recognition.interimResults = false;
+
+    recognition.maxAlternatives = 1;
+
+    micStatus.innerHTML = "🎤 Listening...";
+
+    waveBox.style.display = "block";
+
+    recognition.start();
+
+    recognition.onresult = function(event){
+
+        waveBox.style.display = "none";
+
+        let command =
+            event.results[0][0].transcript
+            .toLowerCase()
+            .trim();
+
+        console.log("VOICE :", command);
+
+        micStatus.innerHTML =
+            "✅ Voice detected successfully";
+
+        let productFound = false;
+
+        // =====================================
+        // RICE BAG
+        // =====================================
+
+        if(
+            command.includes("rice")
+        ){
+
+            voiceResult.innerHTML = `
+                <b>Product :</b> Rice Bag <br>
+                <b>Available Stock :</b> 120 Units <br>
+                <b>Risk Status :</b> High Stock
+            `;
+
+            speakText(
+                "Rice bag stock is 120 units. High stock."
+            );
+
+            productFound = true;
+
+        }
+
+        // =====================================
+        // SMART WATCH
+        // =====================================
+
+        else if(
+
+            command.includes("smart") ||
+            command.includes("watch") ||
+            command.includes("smartwatch")
+
+        ){
+
+            voiceResult.innerHTML = `
+                <b>Product :</b> Smart Watch <br>
+                <b>Available Stock :</b> 18 Units <br>
+                <b>Risk Status :</b> Low Stock
+            `;
+
+            speakText(
+                "Smart watch stock is 18 units. Low stock."
+            );
+
+            productFound = true;
+
+        }
+
+        // =====================================
+        // OFFICE CHAIR
+        // =====================================
+
+        else if(
+
+            command.includes("chair") ||
+            command.includes("office chair") ||
+            command.includes("chairs")
+
+        ){
+
+            voiceResult.innerHTML = `
+                <b>Product :</b> Office Chair <br>
+                <b>Available Stock :</b> 55 Units <br>
+                <b>Risk Status :</b> Medium Stock
+            `;
+
+            speakText(
+                "Office chair stock is 55 units. Medium stock."
+            );
+
+            productFound = true;
+
+        }
+
+        // =====================================
+        // MILK
+        // =====================================
+
+        else if(
+
+            command.includes("milk")
+
+        ){
+
+            voiceResult.innerHTML = `
+                <b>Product :</b> Milk <br>
+                <b>Available Stock :</b> 40 Units <br>
+                <b>Risk Status :</b> Medium Stock
+            `;
+
+            speakText(
+                "Milk stock is 40 units. Medium stock."
+            );
+
+            productFound = true;
+
+        }
+
+        // =====================================
+        // TEDDY BEAR
+        // =====================================
+
+        else if(
+
+            command.includes("teddy") ||
+            command.includes("bear") ||
+            command.includes("teddy bear")
+
+        ){
+
+            voiceResult.innerHTML = `
+                <b>Product :</b> Teddy Bear <br>
+                <b>Available Stock :</b> 25 Units <br>
+                <b>Risk Status :</b> Low Stock
+            `;
+
+            speakText(
+                "Teddy bear stock is 25 units. Low stock."
+            );
+
+            productFound = true;
+
+        }
+
+        // =====================================
+        // PANTS
+        // =====================================
+
+        else if(
+
+            command.includes("pant") ||
+            command.includes("pants")
+
+        ){
+
+            voiceResult.innerHTML = `
+                <b>Product :</b> Pants <br>
+                <b>Available Stock :</b> 35 Units <br>
+                <b>Risk Status :</b> Medium Stock
+            `;
+
+            speakText(
+                "Pants stock is 35 units. Medium stock."
+            );
+
+            productFound = true;
+
+        }
+
+        // =====================================
+        // PRODUCT NOT FOUND
+        // =====================================
+
+        if(!productFound){
+
+            voiceResult.innerHTML = `
+                ❌ Product not found in inventory
+            `;
+
+            speakText(
+                "Product not found in inventory"
+            );
+
+        }
+
+    };
+
+    recognition.onerror = function(event){
+
+        waveBox.style.display = "none";
+
+        micStatus.innerHTML =
+            "❌ Voice recognition failed";
+
+        voiceResult.innerHTML = `
+            Please speak clearly and slowly.
+        `;
+
+        console.log(event.error);
+
+    };
 
 }
 

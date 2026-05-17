@@ -1,8 +1,8 @@
-
 from flask import Flask, render_template, request, redirect, session, send_file
 from pymongo import MongoClient
 import pandas as pd
 import joblib
+from datetime import datetime
 
 from reportlab.platypus import (
     SimpleDocTemplate,
@@ -35,6 +35,8 @@ client = MongoClient(MONGO_URI)
 db = client["StockSense_db"]
 
 users_collection = db["users"]
+
+predictions_collection = db["predictions"]
 
 # =========================================
 # LOAD DATASET
@@ -88,8 +90,6 @@ def signup():
 
         confirm_password = request.form['confirm_password']
 
-        # PASSWORD CHECK
-
         if password != confirm_password:
 
             error = "Passwords do not match"
@@ -98,8 +98,6 @@ def signup():
                 'signup.html',
                 error=error
             )
-
-        # EXISTING USER CHECK
 
         existing_user = users_collection.find_one({
 
@@ -115,8 +113,6 @@ def signup():
                 'signup.html',
                 error=error
             )
-
-        # INSERT USER
 
         users_collection.insert_one({
 
@@ -187,8 +183,6 @@ def dashboard():
 
         return redirect('/login')
 
-    # TOTAL PRODUCTS
-
     try:
 
         total_products = len(data)
@@ -196,8 +190,6 @@ def dashboard():
     except:
 
         total_products = 0
-
-    # TOTAL SALES
 
     try:
 
@@ -209,8 +201,6 @@ def dashboard():
 
         total_sales = 0
 
-    # AVAILABLE STOCK
-
     try:
 
         available_stock = int(
@@ -220,8 +210,6 @@ def dashboard():
     except:
 
         available_stock = 0
-
-    # LOW STOCK COUNT
 
     try:
 
@@ -374,9 +362,21 @@ def prediction():
 
     prediction_result = None
 
+    stock_status = None
+
     if request.method == 'POST':
 
         try:
+
+            # =========================================
+            # GET FORM DATA
+            # =========================================
+
+            product_name = request.form['product']
+
+            category = request.form['category']
+
+            weight = request.form['weight']
 
             inventory = float(
                 request.form['inventory']
@@ -386,30 +386,78 @@ def prediction():
                 request.form['sales']
             )
 
-            # SIMPLE AI PREDICTION
+            # =========================================
+            # AI DEMAND PREDICTION
+            # =========================================
 
             prediction_result = int(
 
-                (sales * 1.5) -
-                (inventory * 0.2)
+                (sales * 0.7) +
+                (inventory * 0.3)
 
             )
 
-            # AVOID NEGATIVE VALUE
+            # =========================================
+            # DEMAND STATUS
+            # =========================================
 
-            if prediction_result < 0:
+            if prediction_result >= 80:
 
-                prediction_result = 0
+                stock_status = "High Demand"
 
-        except:
+            elif prediction_result >= 40:
+
+                stock_status = "Medium Demand"
+
+            else:
+
+                stock_status = "Low Demand"
+
+            # =========================================
+            # SAVE TO MONGODB
+            # =========================================
+
+            prediction_data = {
+
+                "username": session['username'],
+
+                "product_name": product_name,
+
+                "category": category,
+
+                "weight": weight,
+
+                "inventory_level": inventory,
+
+                "units_sold": sales,
+
+                "prediction": prediction_result,
+
+                "stock_status": stock_status,
+
+                "created_at": datetime.now()
+
+            }
+
+            predictions_collection.insert_one(
+                prediction_data
+            )
+
+        except Exception as e:
+
+            print(e)
 
             prediction_result = 0
+
+            stock_status = "Prediction Failed"
 
     return render_template(
 
         'prediction.html',
 
-        prediction=prediction_result
+        prediction=prediction_result,
+
+        stock_status=stock_status
 
     )
 
@@ -421,15 +469,11 @@ def prediction():
 def profile():
 
     if 'username' not in session:
-
         return redirect('/login')
 
     return render_template(
-
         'profile.html',
-
         username=session['username']
-
     )
 
 # =========================================
@@ -445,8 +489,6 @@ def export_pdf():
 
     pdf_file = "stock_report.pdf"
 
-    # PDF DOCUMENT
-
     doc = SimpleDocTemplate(
 
         pdf_file,
@@ -459,8 +501,6 @@ def export_pdf():
 
     styles = getSampleStyleSheet()
 
-    # TITLE
-
     title = Paragraph(
 
         "StockSense AI - Inventory Report",
@@ -472,8 +512,6 @@ def export_pdf():
     elements.append(title)
 
     elements.append(Spacer(1, 20))
-
-    # TABLE DATA
 
     table_data = [[
 
@@ -507,8 +545,6 @@ def export_pdf():
 
         pass
 
-    # TABLE
-
     table = Table(table_data)
 
     table.setStyle(TableStyle([
@@ -528,8 +564,6 @@ def export_pdf():
     ]))
 
     elements.append(table)
-
-    # BUILD PDF
 
     doc.build(elements)
 
@@ -559,4 +593,3 @@ def logout():
 if __name__ == "__main__":
 
     app.run(debug=True)
-

@@ -1,101 +1,154 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>StockSense AI Prediction</title>
 
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
 
     <!-- Dashboard CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='dashboard.css') }}">
 
     <style>
 
-        .prediction-container{
-            max-width:700px;
-            margin:auto;
+        body{
+
+            font-family:'Poppins', sans-serif;
+
+            background:#f1f5f9;
+
+        }
+
+        .prediction-card{
+
             background:white;
-            padding:40px;
+
+            padding:45px;
+
             border-radius:25px;
-            box-shadow:0 10px 30px rgba(0,0,0,0.08);
+
+            box-shadow:0 10px 25px rgba(0,0,0,0.08);
+
         }
 
         .prediction-title{
-            font-size:36px;
+
+            font-size:48px;
+
             font-weight:700;
+
             color:#0f172a;
-            margin-bottom:10px;
+
         }
 
         .prediction-subtitle{
+
             color:#64748b;
+
+            margin-top:10px;
+
             margin-bottom:35px;
+
+            font-size:18px;
+
         }
 
-        .prediction-form label{
+        .form-label{
+
             font-weight:600;
-            margin-bottom:8px;
+
+            margin-bottom:10px;
+
             color:#1e293b;
+
         }
 
-        .prediction-form input{
-            width:100%;
-            padding:15px;
-            border-radius:14px;
-            border:1px solid #cbd5e1;
-            margin-bottom:25px;
-            outline:none;
-            transition:0.3s;
-        }
+        .form-control{
 
-        .prediction-form input:focus{
-            border-color:#2563eb;
-            box-shadow:0 0 10px rgba(37,99,235,0.2);
+            height:55px;
+
+            border-radius:12px;
+
+            font-size:17px;
+
         }
 
         .predict-btn{
-            width:100%;
-            padding:16px;
+
+            background:#2563eb;
+
             border:none;
-            border-radius:14px;
-            background:linear-gradient(135deg,#2563eb,#3b82f6);
-            color:white;
+
+            height:55px;
+
+            border-radius:12px;
+
             font-size:18px;
+
             font-weight:600;
+
             transition:0.3s;
+
         }
 
         .predict-btn:hover{
-            transform:translateY(-3px);
+
+            background:#1d4ed8;
+
         }
 
         .result-box{
+
             margin-top:35px;
-            padding:25px;
-            border-radius:18px;
+
+            padding:30px;
+
+            border-radius:20px;
+
             background:#eff6ff;
+
             border-left:6px solid #2563eb;
+
         }
 
-        .result-box h4{
-            color:#2563eb;
-            margin-bottom:10px;
-        }
+        .status-high{
 
-        .result-box p{
-            font-size:22px;
+            color:#16a34a;
+
             font-weight:700;
-            color:#0f172a;
-            margin:0;
+
+        }
+
+        .status-medium{
+
+            color:#ca8a04;
+
+            font-weight:700;
+
+        }
+
+        .status-low{
+
+            color:#dc2626;
+
+            font-weight:700;
+
         }
 
     </style>
@@ -136,52 +189,263 @@
 
 <div class="main-content">
 
-    <div class="prediction-container">
+    <div class="container mt-5">
 
-        <h2 class="prediction-title">
-            AI Demand Prediction
-        </h2>
+        <div class="prediction-card">
 
-        <p class="prediction-subtitle">
-            Predict future inventory demand using AI-powered analytics.
-        </p>
+            <h1 class="prediction-title">
 
-        <form method="POST" class="prediction-form">
+                AI Demand Prediction
 
-            <label>Inventory Level</label>
+            </h1>
 
-            <input type="number"
-            name="inventory"
-            placeholder="Enter current inventory level"
-            required>
+            <p class="prediction-subtitle">
 
-            <label>Units Sold</label>
+                Predict future inventory demand using
+                AI-powered analytics.
 
-            <input type="number"
-            name="sales"
-            placeholder="Enter units sold"
-            required>
-
-            <button type="submit" class="predict-btn">
-                Predict Future Demand
-            </button>
-
-        </form>
-
-        {% if prediction %}
-
-        <div class="result-box">
-
-            <h4>Prediction Result</h4>
-
-            <p>
-                Predicted Future Demand:
-                {{ prediction }} Units
             </p>
 
-        </div>
+            <!-- FORM -->
 
-        {% endif %}
+            <form method="POST">
+
+                <!-- PRODUCT DROPDOWN -->
+
+                <div class="mb-4">
+
+                    <label class="form-label">
+
+                        Product Name
+
+                    </label>
+
+                    <select name="product"
+                            class="form-control"
+                            required>
+
+                        <option value="">
+                            Select Product
+                        </option>
+
+                        <option value="Rice Bag">
+                            Rice Bag
+                        </option>
+
+                        <option value="Milk">
+                            Milk
+                        </option>
+
+                        <option value="Chocolate">
+                            Chocolate
+                        </option>
+
+                        <option value="Smart Watch">
+                            Smart Watch
+                        </option>
+
+                        <option value="Headphones">
+                            Headphones
+                        </option>
+
+                        <option value="Office Chair">
+                            Office Chair
+                        </option>
+
+                        <option value="Dining Table">
+                            Dining Table
+                        </option>
+
+                        <option value="Cupboards">
+                            Cupboards
+                        </option>
+
+                        <option value="Mirrors">
+                            Mirrors
+                        </option>
+
+                        <option value="Pants">
+                            Pants
+                        </option>
+
+                        <option value="Shirts">
+                            Shirts
+                        </option>
+
+                        <option value="Teddy Bear">
+                            Teddy Bear
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- CATEGORY -->
+
+                <div class="mb-4">
+
+                    <label class="form-label">
+
+                        Category
+
+                    </label>
+
+                    <select name="category"
+                            class="form-control"
+                            required>
+
+                        <option value="">
+                            Select Category
+                        </option>
+
+                        <option value="Groceries">
+                            Groceries
+                        </option>
+
+                        <option value="Electronics">
+                            Electronics
+                        </option>
+
+                        <option value="Furniture">
+                            Furniture
+                        </option>
+
+                        <option value="Clothing">
+                            Clothing
+                        </option>
+
+                        <option value="Toys">
+                            Toys
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- WEIGHT -->
+
+                <div class="mb-4">
+
+                    <label class="form-label">
+
+                        Product Weight / Quantity
+
+                    </label>
+
+                    <input type="text"
+                           name="weight"
+                           class="form-control"
+                           placeholder="Example: 1KG, 5KG, 25KG"
+                           required>
+
+                </div>
+
+                <!-- INVENTORY -->
+
+                <div class="mb-4">
+
+                    <label class="form-label">
+
+                        Inventory Level
+
+                    </label>
+
+                    <input type="number"
+                           name="inventory"
+                           class="form-control"
+                           placeholder="Enter inventory level"
+                           required>
+
+                </div>
+
+                <!-- SALES -->
+
+                <div class="mb-4">
+
+                    <label class="form-label">
+
+                        Units Sold
+
+                    </label>
+
+                    <input type="number"
+                           name="sales"
+                           class="form-control"
+                           placeholder="Enter units sold"
+                           required>
+
+                </div>
+
+                <!-- BUTTON -->
+
+                <button type="submit"
+                        class="btn predict-btn w-100">
+
+                    Predict Future Demand
+
+                </button>
+
+            </form>
+
+            <!-- RESULT -->
+
+            {% if prediction %}
+
+            <div class="result-box">
+
+                <h3>
+
+                    📊 Prediction Result
+
+                </h3>
+
+                <hr>
+
+                <p>
+
+                    <strong>Predicted Future Demand :</strong>
+
+                    {{ prediction }} Units
+
+                </p>
+
+                <p>
+
+                    <strong>Stock Status :</strong>
+
+                    {% if stock_status == "High Demand" %}
+
+                    <span class="status-high">
+
+                        {{ stock_status }}
+
+                    </span>
+
+                    {% elif stock_status == "Medium Demand" %}
+
+                    <span class="status-medium">
+
+                        {{ stock_status }}
+
+                    </span>
+
+                    {% else %}
+
+                    <span class="status-low">
+
+                        {{ stock_status }}
+
+                    </span>
+
+                    {% endif %}
+
+                </p>
+
+            </div>
+
+            {% endif %}
+
+        </div>
 
     </div>
 
@@ -190,4 +454,3 @@
 </body>
 
 </html>
-```
