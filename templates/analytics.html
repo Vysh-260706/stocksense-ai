@@ -4,121 +4,125 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>StockSense AI Analytics</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>StockSense Analytics</title>
 
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Dashboard CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
 
-    <!-- CHART JS -->
+    <!-- Chart.js -->
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+
+        body{
+
+            background:
+            linear-gradient(
+            135deg,
+            #0f172a,
+            #1e293b
+            );
+
+            font-family:'Poppins',sans-serif;
+
+            color:white;
+
+            min-height:100vh;
+        }
+
+        .main-container{
+
+            padding:40px;
+        }
+
+        .title-box{
+
+            margin-bottom:40px;
+        }
+
+        .title-box h1{
+
+            font-size:42px;
+
+            font-weight:700;
+        }
+
+        .title-box p{
+
+            color:#cbd5e1;
+        }
+
+        .chart-card{
+
+            background:rgba(255,255,255,0.08);
+
+            backdrop-filter:blur(15px);
+
+            border-radius:25px;
+
+            padding:25px;
+
+            margin-bottom:30px;
+
+            box-shadow:
+            0 8px 32px rgba(0,0,0,0.3);
+
+            transition:0.3s;
+        }
+
+        .chart-card:hover{
+
+            transform:translateY(-5px);
+        }
+
+        canvas{
+
+            width:100% !important;
+
+            height:350px !important;
+        }
+
+    </style>
 
 </head>
 
 <body>
 
-<!-- SIDEBAR -->
+<div class="container-fluid main-container">
 
-<div class="sidebar">
+    <!-- TITLE -->
 
-    <h2>StockSense AI</h2>
+    <div class="title-box">
 
-    <ul>
-
-        <li><a href="/dashboard">Dashboard</a></li>
-
-        <li><a href="/products">Products</a></li>
-
-        <li><a href="/sales">Sales</a></li>
-
-        <li><a href="/lowstock">Low Stock</a></li>
-
-        <li><a href="/analytics">Analytics</a></li>
-
-        <li><a href="/profile">Profile</a></li>
-
-        <li><a href="/logout">Logout</a></li>
-
-    </ul>
-
-</div>
-
-<!-- MAIN CONTENT -->
-
-<div class="main-content">
-
-    <!-- TOP -->
-
-    <div class="top-navbar">
-
-        <h3>Business Analytics Dashboard</h3>
+        <h1>📊 AI Analytics Dashboard</h1>
 
         <p>
-            Smart AI-powered inventory and sales analytics.
+            Real-time inventory and sales insights
         </p>
 
     </div>
 
-    <!-- ANALYTICS CARDS -->
+    <div class="row">
 
-    <div class="row mt-4">
-
-        <div class="col-md-4">
-
-            <div class="dashboard-card blue-card">
-
-                <h5>Total Revenue</h5>
-
-                <h2>₹85K</h2>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-4">
-
-            <div class="dashboard-card green-card">
-
-                <h5>Sales Growth</h5>
-
-                <h2>+12%</h2>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-4">
-
-            <div class="dashboard-card orange-card">
-
-                <h5>Top Category</h5>
-
-                <h2>Food</h2>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- CHARTS -->
-
-    <div class="row mt-5">
-
-        <!-- BAR CHART -->
+        <!-- SALES CHART -->
 
         <div class="col-lg-6">
 
-            <div class="table-section">
+            <div class="chart-card">
 
-                <h3>Monthly Sales</h3>
+                <h4>📈 Monthly Sales</h4>
 
                 <canvas id="salesChart"></canvas>
 
@@ -126,13 +130,13 @@
 
         </div>
 
-        <!-- PIE CHART -->
+        <!-- STOCK CHART -->
 
         <div class="col-lg-6">
 
-            <div class="table-section">
+            <div class="chart-card">
 
-                <h3>Inventory Categories</h3>
+                <h4>📦 Product Stock Levels</h4>
 
                 <canvas id="stockChart"></canvas>
 
@@ -142,60 +146,327 @@
 
     </div>
 
-    <!-- AI INSIGHT -->
+    <div class="row">
 
-    <div class="reorder-box mt-5">
+        <!-- CATEGORY CHART -->
 
-        <h4>AI Business Insight</h4>
+        <div class="col-lg-6">
 
-        <p>
+            <div class="chart-card">
 
-            AI analysis indicates strong growth in Food and Dairy categories.
-            Cosmetic inventory levels are reducing rapidly and require immediate restocking.
-            Current monthly sales trends predict an additional 18% growth next month.
+                <h4>🛒 Category Distribution</h4>
 
-        </p>
+                <canvas id="categoryChart"></canvas>
+
+            </div>
+
+        </div>
+
+        <!-- FORECAST CHART -->
+
+        <div class="col-lg-6">
+
+            <div class="chart-card">
+
+                <h4>🤖 AI Demand Forecast</h4>
+
+                <canvas id="forecastChart"></canvas>
+
+            </div>
+
+        </div>
 
     </div>
 
 </div>
 
-<!-- CHART SCRIPT -->
-
 <script>
 
-const salesChart = new Chart(
+//////////////////////////////////////////////////
+// SALES CHART
+//////////////////////////////////////////////////
+
+new Chart(
+
     document.getElementById('salesChart'),
+
     {
-        type: 'bar',
-        data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-            datasets: [{
-                label: 'Sales',
-                data: [12, 19, 10, 25, 22, 30],
-                borderWidth: 1
+
+        type:'line',
+
+        data:{
+
+            labels:[
+                'Jan',
+                'Feb',
+                'Mar',
+                'Apr',
+                'May',
+                'Jun'
+            ],
+
+            datasets:[{
+
+                label:'Sales',
+
+                data:[
+                    120,
+                    190,
+                    300,
+                    250,
+                    420,
+                    500
+                ],
+
+                borderColor:'#3b82f6',
+
+                backgroundColor:
+                'rgba(59,130,246,0.3)',
+
+                fill:true,
+
+                tension:0.4
             }]
         },
-        options: {
-            responsive:true
+
+        options:{
+
+            responsive:true,
+
+            plugins:{
+                legend:{
+                    labels:{
+                        color:'white'
+                    }
+                }
+            },
+
+            scales:{
+                x:{
+                    ticks:{
+                        color:'white'
+                    }
+                },
+
+                y:{
+                    ticks:{
+                        color:'white'
+                    }
+                }
+            }
         }
+
     }
+
 );
 
-const stockChart = new Chart(
+//////////////////////////////////////////////////
+// STOCK CHART
+//////////////////////////////////////////////////
+
+new Chart(
+
     document.getElementById('stockChart'),
+
     {
-        type: 'pie',
-        data: {
-            labels: ['Food', 'Dairy', 'Cosmetics', 'Beverages'],
-            datasets: [{
-                data: [35, 25, 20, 20]
+
+        type:'bar',
+
+        data:{
+
+            labels:[
+                'Rice',
+                'Milk',
+                'Watch',
+                'Chair',
+                'Shirt'
+            ],
+
+            datasets:[{
+
+                label:'Stock',
+
+                data:[
+                    120,
+                    40,
+                    18,
+                    70,
+                    95
+                ],
+
+                backgroundColor:[
+
+                    '#2563eb',
+                    '#16a34a',
+                    '#dc2626',
+                    '#f59e0b',
+                    '#8b5cf6'
+
+                ],
+
+                borderRadius:10
             }]
         },
-        options: {
-            responsive:true
+
+        options:{
+
+            responsive:true,
+
+            plugins:{
+                legend:{
+                    labels:{
+                        color:'white'
+                    }
+                }
+            },
+
+            scales:{
+                x:{
+                    ticks:{
+                        color:'white'
+                    }
+                },
+
+                y:{
+                    ticks:{
+                        color:'white'
+                    }
+                }
+            }
         }
+
     }
+
+);
+
+//////////////////////////////////////////////////
+// CATEGORY PIE CHART
+//////////////////////////////////////////////////
+
+new Chart(
+
+    document.getElementById('categoryChart'),
+
+    {
+
+        type:'doughnut',
+
+        data:{
+
+            labels:[
+                'Electronics',
+                'Groceries',
+                'Furniture',
+                'Fashion'
+            ],
+
+            datasets:[{
+
+                data:[
+                    35,
+                    25,
+                    20,
+                    20
+                ],
+
+                backgroundColor:[
+
+                    '#3b82f6',
+                    '#16a34a',
+                    '#f59e0b',
+                    '#8b5cf6'
+
+                ]
+            }]
+        },
+
+        options:{
+
+            responsive:true,
+
+            plugins:{
+                legend:{
+                    labels:{
+                        color:'white'
+                    }
+                }
+            }
+        }
+
+    }
+
+);
+
+//////////////////////////////////////////////////
+// FORECAST CHART
+//////////////////////////////////////////////////
+
+new Chart(
+
+    document.getElementById('forecastChart'),
+
+    {
+
+        type:'radar',
+
+        data:{
+
+            labels:[
+
+                'Rice',
+                'Milk',
+                'Watch',
+                'Chair',
+                'Shoes'
+
+            ],
+
+            datasets:[{
+
+                label:'Demand Forecast',
+
+                data:[
+                    90,
+                    50,
+                    95,
+                    70,
+                    85
+                ],
+
+                backgroundColor:
+                'rgba(59,130,246,0.3)',
+
+                borderColor:'#3b82f6'
+            }]
+        },
+
+        options:{
+
+            responsive:true,
+
+            plugins:{
+                legend:{
+                    labels:{
+                        color:'white'
+                    }
+                }
+            },
+
+            scales:{
+                r:{
+                    pointLabels:{
+                        color:'white'
+                    },
+
+                    ticks:{
+                        color:'white'
+                    }
+                }
+            }
+        }
+
+    }
+
 );
 
 </script>

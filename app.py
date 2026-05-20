@@ -563,6 +563,18 @@ def export_pdf():
         as_attachment=True
 
     )
+    # =========================================
+# CHATBOT PAGE
+# =========================================
+
+@app.route('/chatbot')
+def chatbot():
+
+    if 'username' not in session:
+
+        return redirect('/login')
+
+    return render_template('chatbot.html')
 
 # =========================================
 # LOGOUT

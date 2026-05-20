@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>StockSense AI Chatbot</title>
+
+    <!-- GOOGLE FONT -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+
+            font-family:'Poppins',sans-serif;
+
+            background:
+            linear-gradient(
+            135deg,
+            #0f172a,
+            #1e293b,
+            #2563eb
+            );
+
+            height:100vh;
+
+            display:flex;
+
+            justify-content:center;
+
+            align-items:center;
+
+            overflow:hidden;
+        }
+
+        .chat-container{
+
+            width:90%;
+
+            max-width:900px;
+
+            height:90vh;
+
+            background:rgba(255,255,255,0.08);
+
+            backdrop-filter:blur(15px);
+
+            border-radius:25px;
+
+            padding:25px;
+
+            box-shadow:
+            0 8px 32px rgba(0,0,0,0.3);
+
+            display:flex;
+
+            flex-direction:column;
+        }
+
+        .chat-header{
+
+            display:flex;
+
+            justify-content:space-between;
+
+            align-items:center;
+
+            margin-bottom:20px;
+        }
+
+        .chat-header h1{
+
+            color:white;
+
+            font-size:32px;
+
+            font-weight:700;
+        }
+
+        .chat-header p{
+
+            color:#cbd5e1;
+        }
+
+        .chat-box{
+
+            flex:1;
+
+            overflow-y:auto;
+
+            padding:20px;
+
+            background:rgba(255,255,255,0.05);
+
+            border-radius:20px;
+
+            margin-bottom:20px;
+        }
+
+        .message{
+
+            max-width:75%;
+
+            padding:14px 18px;
+
+            margin-bottom:18px;
+
+            border-radius:18px;
+
+            line-height:1.5;
+
+            animation:fadeIn 0.3s ease;
+        }
+
+        .user{
+
+            background:#2563eb;
+
+            color:white;
+
+            margin-left:auto;
+
+            border-bottom-right-radius:5px;
+        }
+
+        .bot{
+
+            background:white;
+
+            color:#0f172a;
+
+            border-bottom-left-radius:5px;
+        }
+
+        .input-area{
+
+            display:flex;
+
+            gap:15px;
+        }
+
+        .input-area input{
+
+            flex:1;
+
+            padding:16px;
+
+            border:none;
+
+            border-radius:15px;
+
+            outline:none;
+
+            font-size:16px;
+        }
+
+        .send-btn{
+
+            background:#2563eb;
+
+            color:white;
+
+            border:none;
+
+            padding:15px 28px;
+
+            border-radius:15px;
+
+            font-weight:600;
+
+            cursor:pointer;
+
+            transition:0.3s;
+        }
+
+        .send-btn:hover{
+
+            background:#1d4ed8;
+
+            transform:scale(1.05);
+        }
+
+        @keyframes fadeIn{
+
+            from{
+                opacity:0;
+                transform:translateY(10px);
+            }
+
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+
+        }
+
+        ::-webkit-scrollbar{
+
+            width:6px;
+        }
+
+        ::-webkit-scrollbar-thumb{
+
+            background:#2563eb;
+
+            border-radius:20px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="chat-container">
+
+    <!-- HEADER -->
+
+    <div class="chat-header">
+
+        <div>
+
+            <h1>🤖 StockSense AI</h1>
+
+            <p>Smart Inventory Assistant</p>
+
+        </div>
+
+    </div>
+
+    <!-- CHAT AREA -->
+
+    <div class="chat-box"
+         id="chatBox">
+
+        <div class="message bot">
+
+            👋 Hello! I am your AI Inventory Assistant.<br><br>
+
+            Ask me about:
+            <br>
+            • Stock details
+            <br>
+            • Sales insights
+            <br>
+            • Forecast
+            <br>
+            • Low stock alerts
+            <br>
+            • Profit analysis
+
+        </div>
+
+    </div>
+
+    <!-- INPUT AREA -->
+
+    <div class="input-area">
+
+        <input type="text"
+               id="userInput"
+               placeholder="Ask something...">
+
+        <button class="send-btn"
+                onclick="sendMessage()">
+
+            Send
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+function sendMessage(){
+
+    let input =
+        document.getElementById("userInput");
+
+    let message =
+        input.value.trim().toLowerCase();
+
+    let chatBox =
+        document.getElementById("chatBox");
+
+    if(message === ""){
+
+        return;
+
+    }
+
+    // USER MESSAGE
+
+    chatBox.innerHTML += `
+
+        <div class="message user">
+
+            ${message}
+
+        </div>
+
+    `;
+
+    let response = "";
+
+    // STOCK DETAILS
+
+    if(message.includes("rice")){
+
+        response =
+        "✅ Rice Bag stock is currently 120 units.";
+
+    }
+
+    else if(message.includes("smart watch")){
+
+        response =
+        "⚠ Smart Watch stock is low with only 18 units remaining.";
+
+    }
+
+    else if(message.includes("milk")){
+
+        response =
+        "🥛 Milk stock available: 40 units.";
+
+    }
+
+    else if(message.includes("low stock")){
+
+        response =
+        "⚠ Low stock products: Smart Watch, Teddy Bear and Chocolate.";
+
+    }
+
+    // SALES
+
+    else if(message.includes("sales")){
+
+        response =
+        "📈 Sales increased by 12% this week.";
+
+    }
+
+    else if(message.includes("best selling")){
+
+        response =
+        "🔥 Best selling products are Rice Bag and Shirts.";
+
+    }
+
+    // AI INSIGHTS
+
+    else if(message.includes("forecast")){
+
+        response =
+        "📊 Forecast: Smart Watch demand may increase next week.";
+
+    }
+
+    else if(message.includes("profit")){
+
+        response =
+        "💰 Furniture category has highest profit margin.";
+
+    }
+
+    else if(message.includes("suggestion")){
+
+        response =
+        "💡 AI Suggestion: Restock Electronics category soon.";
+
+    }
+
+    else if(message.includes("improve sales")){
+
+        response =
+        "🚀 Offer discounts for slow moving products.";
+
+    }
+
+    else if(message.includes("report")){
+
+        response =
+        "📑 Reports can be downloaded from Reports Dashboard.";
+
+    }
+
+    else{
+
+        response =
+        "🤖 Sorry, I could not understand your request.";
+
+    }
+
+    // BOT RESPONSE
+
+    setTimeout(() => {
+
+        chatBox.innerHTML += `
+
+            <div class="message bot">
+
+                ${response}
+
+            </div>
+
+        `;
+
+        let speech =
+            new SpeechSynthesisUtterance(response);
+
+        speech.lang = "en-US";
+
+        speech.rate = 1;
+
+        window.speechSynthesis.speak(speech);
+
+        chatBox.scrollTop =
+            chatBox.scrollHeight;
+
+    }, 500);
+
+    input.value = "";
+
+    chatBox.scrollTop =
+        chatBox.scrollHeight;
+
+}
+
+</script>
+
+</body>
+
+</html>
