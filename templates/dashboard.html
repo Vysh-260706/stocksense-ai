@@ -325,7 +325,20 @@
 
     <div class="table-section">
 
-        <h3>Recent Inventory Activity</h3>
+        <div class="d-flex justify-content-between align-items-center flex-wrap">
+
+            <h3>Recent Inventory Activity</h3>
+
+            <!-- EXPORT PDF BUTTON -->
+
+            <a href="/export_pdf"
+               class="btn btn-danger px-4 py-2 rounded-3 fw-semibold">
+
+                📄 Export Inventory Report PDF
+
+            </a>
+
+        </div>
 
         <table class="table mt-4">
 
@@ -372,62 +385,6 @@
                     <td><span class="status-danger">Low Stock</span></td>
                 </tr>
 
-                <tr>
-                    <td>Headphones</td>
-                    <td>Electronics</td>
-                    <td>75</td>
-                    <td><span class="status-available">High Stock</span></td>
-                </tr>
-
-                <tr>
-                    <td>Office Chair</td>
-                    <td>Furniture</td>
-                    <td>55</td>
-                    <td><span class="status-medium">Medium Stock</span></td>
-                </tr>
-
-                <tr>
-                    <td>Dinning Table</td>
-                    <td>Furniture</td>
-                    <td>20</td>
-                    <td><span class="status-danger">Low Stock</span></td>
-                </tr>
-
-                <tr>
-                    <td>Cupboards</td>
-                    <td>Furniture</td>
-                    <td>65</td>
-                    <td><span class="status-medium">Medium Stock</span></td>
-                </tr>
-
-                <tr>
-                    <td>Mirrors</td>
-                    <td>Furniture</td>
-                    <td>95</td>
-                    <td><span class="status-available">High Stock</span></td>
-                </tr>
-
-                <tr>
-                    <td>Pants</td>
-                    <td>Clothing</td>
-                    <td>35</td>
-                    <td><span class="status-medium">Medium Stock</span></td>
-                </tr>
-
-                <tr>
-                    <td>Shirts</td>
-                    <td>Clothing</td>
-                    <td>85</td>
-                    <td><span class="status-available">High Stock</span></td>
-                </tr>
-
-                <tr>
-                    <td>Teddy Bear</td>
-                    <td>Toys</td>
-                    <td>25</td>
-                    <td><span class="status-danger">Low Stock</span></td>
-                </tr>
-
             </tbody>
 
         </table>
@@ -436,261 +393,11 @@
 
 </div>
 
-<!-- SCRIPT -->
-
 <script>
 
 function toggleDarkMode(){
 
     document.body.classList.toggle("dark-mode");
-
-}
-
-function speakText(text){
-
-    const speech = new SpeechSynthesisUtterance(text);
-
-    speech.lang = "en-US";
-
-    speech.rate = 1;
-
-    window.speechSynthesis.speak(speech);
-
-}
-
-function startVoiceAssistant(){
-
-    const micStatus = document.getElementById("micStatus");
-
-    const voiceResult = document.getElementById("voiceResult");
-
-    const waveBox = document.getElementById("waveBox");
-
-    const SpeechRecognition =
-        window.SpeechRecognition ||
-        window.webkitSpeechRecognition;
-
-    if(!SpeechRecognition){
-
-        alert("Speech Recognition not supported");
-
-        return;
-
-    }
-
-    const recognition = new SpeechRecognition();
-
-    recognition.lang = "en-US";
-
-    recognition.continuous = false;
-
-    recognition.interimResults = false;
-
-    recognition.maxAlternatives = 1;
-
-    micStatus.innerHTML = "🎤 Listening...";
-
-    waveBox.style.display = "block";
-
-    recognition.start();
-
-    recognition.onresult = function(event){
-
-        waveBox.style.display = "none";
-
-        let command =
-            event.results[0][0].transcript
-            .toLowerCase()
-            .trim();
-
-        console.log("VOICE :", command);
-
-        micStatus.innerHTML =
-            "✅ Voice detected successfully";
-
-        let productFound = false;
-
-        // =====================================
-        // RICE BAG
-        // =====================================
-
-        if(
-            command.includes("rice")
-        ){
-
-            voiceResult.innerHTML = `
-                <b>Product :</b> Rice Bag <br>
-                <b>Available Stock :</b> 120 Units <br>
-                <b>Risk Status :</b> High Stock
-            `;
-
-            speakText(
-                "Rice bag stock is 120 units. High stock."
-            );
-
-            productFound = true;
-
-        }
-
-        // =====================================
-        // SMART WATCH
-        // =====================================
-
-        else if(
-
-            command.includes("smart") ||
-            command.includes("watch") ||
-            command.includes("smartwatch")
-
-        ){
-
-            voiceResult.innerHTML = `
-                <b>Product :</b> Smart Watch <br>
-                <b>Available Stock :</b> 18 Units <br>
-                <b>Risk Status :</b> Low Stock
-            `;
-
-            speakText(
-                "Smart watch stock is 18 units. Low stock."
-            );
-
-            productFound = true;
-
-        }
-
-        // =====================================
-        // OFFICE CHAIR
-        // =====================================
-
-        else if(
-
-            command.includes("chair") ||
-            command.includes("office chair") ||
-            command.includes("chairs")
-
-        ){
-
-            voiceResult.innerHTML = `
-                <b>Product :</b> Office Chair <br>
-                <b>Available Stock :</b> 55 Units <br>
-                <b>Risk Status :</b> Medium Stock
-            `;
-
-            speakText(
-                "Office chair stock is 55 units. Medium stock."
-            );
-
-            productFound = true;
-
-        }
-
-        // =====================================
-        // MILK
-        // =====================================
-
-        else if(
-
-            command.includes("milk")
-
-        ){
-
-            voiceResult.innerHTML = `
-                <b>Product :</b> Milk <br>
-                <b>Available Stock :</b> 40 Units <br>
-                <b>Risk Status :</b> Medium Stock
-            `;
-
-            speakText(
-                "Milk stock is 40 units. Medium stock."
-            );
-
-            productFound = true;
-
-        }
-
-        // =====================================
-        // TEDDY BEAR
-        // =====================================
-
-        else if(
-
-            command.includes("teddy") ||
-            command.includes("bear") ||
-            command.includes("teddy bear")
-
-        ){
-
-            voiceResult.innerHTML = `
-                <b>Product :</b> Teddy Bear <br>
-                <b>Available Stock :</b> 25 Units <br>
-                <b>Risk Status :</b> Low Stock
-            `;
-
-            speakText(
-                "Teddy bear stock is 25 units. Low stock."
-            );
-
-            productFound = true;
-
-        }
-
-        // =====================================
-        // PANTS
-        // =====================================
-
-        else if(
-
-            command.includes("pant") ||
-            command.includes("pants")
-
-        ){
-
-            voiceResult.innerHTML = `
-                <b>Product :</b> Pants <br>
-                <b>Available Stock :</b> 35 Units <br>
-                <b>Risk Status :</b> Medium Stock
-            `;
-
-            speakText(
-                "Pants stock is 35 units. Medium stock."
-            );
-
-            productFound = true;
-
-        }
-
-        // =====================================
-        // PRODUCT NOT FOUND
-        // =====================================
-
-        if(!productFound){
-
-            voiceResult.innerHTML = `
-                ❌ Product not found in inventory
-            `;
-
-            speakText(
-                "Product not found in inventory"
-            );
-
-        }
-
-    };
-
-    recognition.onerror = function(event){
-
-        waveBox.style.display = "none";
-
-        micStatus.innerHTML =
-            "❌ Voice recognition failed";
-
-        voiceResult.innerHTML = `
-            Please speak clearly and slowly.
-        `;
-
-        console.log(event.error);
-
-    };
 
 }
 

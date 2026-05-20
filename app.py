@@ -350,7 +350,7 @@ def analytics():
     )
 
 # =========================================
-# PREDICTION PAGE
+# ML PREDICTION PAGE
 # =========================================
 
 @app.route('/prediction', methods=['GET', 'POST'])
@@ -368,15 +368,11 @@ def prediction():
 
         try:
 
-            # =========================================
-            # GET FORM DATA
-            # =========================================
-
             product_name = request.form['product']
 
             category = request.form['category']
 
-            weight = request.form['weight']
+            weight = request.form.get('weight')
 
             inventory = float(
                 request.form['inventory']
@@ -386,20 +382,12 @@ def prediction():
                 request.form['sales']
             )
 
-            # =========================================
-            # AI DEMAND PREDICTION
-            # =========================================
-
             prediction_result = int(
 
                 (sales * 0.7) +
                 (inventory * 0.3)
 
             )
-
-            # =========================================
-            # DEMAND STATUS
-            # =========================================
 
             if prediction_result >= 80:
 
@@ -412,10 +400,6 @@ def prediction():
             else:
 
                 stock_status = "Low Demand"
-
-            # =========================================
-            # SAVE TO MONGODB
-            # =========================================
 
             prediction_data = {
 
@@ -461,6 +445,7 @@ def prediction():
 
     )
 
+
 # =========================================
 # PROFILE PAGE
 # =========================================
@@ -469,11 +454,15 @@ def prediction():
 def profile():
 
     if 'username' not in session:
+
         return redirect('/login')
 
     return render_template(
+
         'profile.html',
+
         username=session['username']
+
     )
 
 # =========================================
