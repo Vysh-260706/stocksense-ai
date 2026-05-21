@@ -24,97 +24,11 @@
             background:#f1f5f9;
         }
 
-        .sidebar{
-            position:fixed;
-            width:240px;
-            height:100vh;
-            background:#0f172a;
-            padding:25px;
-        }
-
-        .sidebar h2{
-            color:white;
-            margin-bottom:30px;
-            font-weight:700;
-        }
-
-        .sidebar ul{
-            list-style:none;
-            padding:0;
-        }
-
-        .sidebar ul li{
-            margin:18px 0;
-        }
-
-        .sidebar ul li a{
-            color:#cbd5e1;
-            text-decoration:none;
-            font-size:16px;
-            transition:0.3s;
-            font-weight:500;
-        }
-
-        .sidebar ul li a:hover{
-            color:white;
-            padding-left:8px;
-        }
-
-        .main-content{
-            margin-left:260px;
-            padding:30px;
-        }
-
-        .top-navbar{
+        .voice-box{
             background:white;
             padding:25px;
             border-radius:20px;
-            box-shadow:0 8px 20px rgba(0,0,0,0.08);
-        }
-
-        .dark-mode-btn{
-            background:#111827;
-            color:white;
-            border:none;
-            padding:12px 22px;
-            border-radius:12px;
-            font-weight:600;
-        }
-
-        .dashboard-card{
-            padding:25px;
-            border-radius:22px;
-            color:white;
-            margin-top:25px;
-            box-shadow:0 8px 20px rgba(0,0,0,0.08);
-            transition:0.3s;
-        }
-
-        .dashboard-card:hover{
-            transform:translateY(-5px);
-        }
-
-        .blue-card{
-            background:linear-gradient(135deg,#2563eb,#1d4ed8);
-        }
-
-        .green-card{
-            background:linear-gradient(135deg,#16a34a,#15803d);
-        }
-
-        .orange-card{
-            background:linear-gradient(135deg,#f97316,#ea580c);
-        }
-
-        .red-card{
-            background:linear-gradient(135deg,#ef4444,#dc2626);
-        }
-
-        .voice-box{
-            background:white;
-            padding:30px;
-            border-radius:22px;
-            margin-top:35px;
+            margin-top:30px;
             box-shadow:0 8px 20px rgba(0,0,0,0.08);
         }
 
@@ -123,7 +37,7 @@
             color:white;
             border:none;
             padding:14px 25px;
-            border-radius:14px;
+            border-radius:12px;
             font-weight:600;
             transition:0.3s;
         }
@@ -134,30 +48,31 @@
 
         .voice-result{
             margin-top:20px;
-            padding:22px;
-            border-radius:16px;
+            padding:18px;
+            border-radius:14px;
             background:#eff6ff;
-            min-height:110px;
             font-weight:600;
-            line-height:1.8;
             color:#0f172a;
+            line-height:1.8;
+            min-height:90px;
         }
 
         .mic-status{
             margin-top:15px;
             color:#475569;
+            font-size:15px;
             font-weight:500;
         }
 
         .listening-wave{
             display:none;
-            margin-top:18px;
+            margin-top:15px;
         }
 
         .wave{
             display:inline-block;
             width:6px;
-            height:28px;
+            height:25px;
             margin:0 3px;
             border-radius:20px;
             background:#2563eb;
@@ -196,26 +111,10 @@
 
         }
 
-        .notification-card{
-            padding:22px;
-            border-radius:20px;
-            color:white;
-            margin-top:30px;
-            box-shadow:0 8px 20px rgba(0,0,0,0.08);
-        }
-
-        .warning-card{
-            background:linear-gradient(135deg,#f59e0b,#d97706);
-        }
-
-        .success-card{
-            background:linear-gradient(135deg,#10b981,#059669);
-        }
-
         .table-section{
             background:white;
-            padding:30px;
-            border-radius:22px;
+            padding:25px;
+            border-radius:20px;
             margin-top:35px;
             box-shadow:0 8px 20px rgba(0,0,0,0.08);
         }
@@ -247,20 +146,125 @@
             font-weight:600;
         }
 
-        .dark-mode{
-            background:#0f172a;
+        .floating-chat-btn{
+
+            position:fixed;
+            bottom:25px;
+            right:25px;
+            width:65px;
+            height:65px;
+            border-radius:50%;
+            background:linear-gradient(135deg,#2563eb,#1d4ed8);
             color:white;
+            border:none;
+            font-size:28px;
+            box-shadow:0 10px 25px rgba(37,99,235,0.4);
+            cursor:pointer;
+            z-index:9999;
+            transition:0.3s;
         }
 
-        .dark-mode .top-navbar,
-        .dark-mode .voice-box,
-        .dark-mode .table-section{
-            background:#1e293b;
-            color:white;
+        .floating-chat-btn:hover{
+
+            transform:scale(1.1);
+
         }
 
-        .dark-mode table{
+        .chat-popup{
+
+            position:fixed;
+            bottom:100px;
+            right:25px;
+            width:350px;
+            height:500px;
+            background:white;
+            border-radius:20px;
+            overflow:hidden;
+            display:none;
+            flex-direction:column;
+            box-shadow:0 15px 40px rgba(0,0,0,0.2);
+            z-index:9999;
+
+        }
+
+        .chat-header{
+
+            background:#2563eb;
             color:white;
+            padding:18px;
+            font-weight:600;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+
+        }
+
+        .chat-body{
+
+            flex:1;
+            padding:15px;
+            overflow-y:auto;
+            background:#f8fafc;
+
+        }
+
+        .chat-message{
+
+            padding:12px 15px;
+            border-radius:15px;
+            margin-bottom:12px;
+            max-width:85%;
+            font-size:14px;
+            line-height:1.5;
+
+        }
+
+        .user-message{
+
+            background:#2563eb;
+            color:white;
+            margin-left:auto;
+
+        }
+
+        .bot-message{
+
+            background:white;
+            color:#0f172a;
+            border:1px solid #e2e8f0;
+
+        }
+
+        .chat-footer{
+
+            display:flex;
+            padding:12px;
+            border-top:1px solid #e2e8f0;
+            background:white;
+
+        }
+
+        .chat-footer input{
+
+            flex:1;
+            border:none;
+            outline:none;
+            padding:10px;
+            border-radius:12px;
+            background:#f1f5f9;
+
+        }
+
+        .chat-footer button{
+
+            margin-left:10px;
+            border:none;
+            background:#2563eb;
+            color:white;
+            border-radius:12px;
+            padding:10px 16px;
+            font-weight:600;
+
         }
 
     </style>
@@ -273,19 +277,19 @@
 
 <div class="sidebar">
 
-    <h3>StockSense AI</h3>
+    <h2>StockSense AI</h2>
 
     <ul>
 
-        <li><a href="/dashboard">🏠 Dashboard</a></li>
-        <li><a href="/products">📦 Products</a></li>
-        <li><a href="/sales">💰 Sales</a></li>
-        <li><a href="/lowstock">⚠ Low Stock</a></li>
-        <li><a href="/analytics">📊 Analytics</a></li>
-        <li><a href="/prediction">🤖 ML Prediction</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/products">Products</a></li>
+        <li><a href="/sales">Sales</a></li>
+        <li><a href="/lowstock">Low Stock</a></li>
+        <li><a href="/analytics">Analytics</a></li>
+        <li><a href="/prediction">ML Prediction</a></li>
         <li><a href="/chatbot">💬 Chatbot</a></li>
-        <li><a href="/profile">👤 Profile</a></li>
-        <li><a href="/logout">🚪 Logout</a></li>
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/logout">Logout</a></li>
 
     </ul>
 
@@ -304,7 +308,7 @@
             <h3>Welcome to StockSense AI Dashboard</h3>
 
             <p>
-                AI-powered smart inventory management system
+                AI-powered smart inventory management system.
             </p>
 
         </div>
@@ -312,6 +316,41 @@
         <button class="dark-mode-btn" onclick="toggleDarkMode()">
             🌙 Dark Mode
         </button>
+
+    </div>
+
+    <!-- VOICE ASSISTANT -->
+
+    <div class="voice-box">
+
+        <h3>🎤 StockSense AI Voice Assistant</h3>
+
+        <p>
+            Speak softly like:
+            <b>"Rice stock"</b>
+        </p>
+
+        <button class="voice-btn" onclick="startVoiceAssistant()">
+            🎙 Start Voice Assistant
+        </button>
+
+        <div class="mic-status" id="micStatus">
+            Microphone is inactive
+        </div>
+
+        <div class="listening-wave" id="waveBox">
+
+            <span class="wave"></span>
+            <span class="wave"></span>
+            <span class="wave"></span>
+            <span class="wave"></span>
+            <span class="wave"></span>
+
+        </div>
+
+        <div class="voice-result" id="voiceResult">
+            Waiting for voice command...
+        </div>
 
     </div>
 
@@ -369,85 +408,6 @@
 
     </div>
 
-    <!-- VOICE ASSISTANT -->
-
-    <div class="voice-box">
-
-        <h3>🎤 Smart AI Voice Assistant</h3>
-
-        <p>
-            Speak naturally like:
-            <b>"show rice stock"</b>
-        </p>
-
-        <button class="voice-btn" onclick="startVoiceAssistant()">
-
-            🎙 Start Voice Assistant
-
-        </button>
-
-        <div class="mic-status" id="micStatus">
-
-            Microphone inactive
-
-        </div>
-
-        <div class="listening-wave" id="waveBox">
-
-            <span class="wave"></span>
-            <span class="wave"></span>
-            <span class="wave"></span>
-            <span class="wave"></span>
-            <span class="wave"></span>
-
-        </div>
-
-        <div class="voice-result" id="voiceResult">
-
-            Waiting for voice command...
-
-        </div>
-
-    </div>
-
-    <!-- NOTIFICATIONS -->
-
-    <div class="row">
-
-        <div class="col-md-6">
-
-            <div class="notification-card warning-card">
-
-                <h5>🔔 Low Stock Alert</h5>
-
-                <p>
-
-                    {{ low_stock }} products require urgent restock.
-
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-6">
-
-            <div class="notification-card success-card">
-
-                <h5>📈 Sales Insight</h5>
-
-                <p>
-
-                    Weekly sales performance increased by 12%.
-
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
     <!-- INVENTORY TABLE -->
 
     <div class="table-section">
@@ -459,7 +419,7 @@
             <a href="/export_pdf"
                class="btn btn-danger px-4 py-2 rounded-3 fw-semibold">
 
-                📄 Export PDF
+                📄 Export Inventory Report PDF
 
             </a>
 
@@ -483,60 +443,87 @@
             <tbody>
 
                 <tr>
-
                     <td>Rice Bag</td>
                     <td>Groceries</td>
                     <td>120</td>
-                    <td>
-                        <span class="status-available">
-                            High Stock
-                        </span>
-                    </td>
-
+                    <td><span class="status-available">High Stock</span></td>
                 </tr>
 
                 <tr>
-
                     <td>Milk</td>
                     <td>Dairy</td>
                     <td>40</td>
-                    <td>
-                        <span class="status-medium">
-                            Medium Stock
-                        </span>
-                    </td>
-
+                    <td><span class="status-medium">Medium Stock</span></td>
                 </tr>
 
                 <tr>
-
                     <td>Chocolate</td>
                     <td>Snacks</td>
                     <td>15</td>
-                    <td>
-                        <span class="status-danger">
-                            Low Stock
-                        </span>
-                    </td>
-
+                    <td><span class="status-danger">Low Stock</span></td>
                 </tr>
 
                 <tr>
-
                     <td>Smart Watch</td>
                     <td>Electronics</td>
                     <td>18</td>
-                    <td>
-                        <span class="status-danger">
-                            Low Stock
-                        </span>
-                    </td>
-
+                    <td><span class="status-danger">Low Stock</span></td>
                 </tr>
 
             </tbody>
 
         </table>
+
+    </div>
+
+</div>
+
+<!-- FLOATING CHATBOT -->
+
+<button class="floating-chat-btn"
+        onclick="toggleChatbot()">
+
+    💬
+
+</button>
+
+<div class="chat-popup" id="chatPopup">
+
+    <div class="chat-header">
+
+        <span>StockSense AI Assistant</span>
+
+        <button onclick="toggleChatbot()"
+                style="background:none;border:none;color:white;font-size:20px;">
+
+            ✖
+
+        </button>
+
+    </div>
+
+    <div class="chat-body" id="chatBody">
+
+        <div class="chat-message bot-message">
+
+            👋 Hello! Ask me about stock, products,
+            sales, analytics and reports.
+
+        </div>
+
+    </div>
+
+    <div class="chat-footer">
+
+        <input type="text"
+               id="chatInput"
+               placeholder="Ask something...">
+
+        <button onclick="sendMessage()">
+
+            Send
+
+        </button>
 
     </div>
 
@@ -550,9 +537,7 @@ function toggleDarkMode(){
 
 }
 
-/* =========================================
-   SUPER SMART VOICE ASSISTANT
-========================================= */
+/* VOICE ASSISTANT */
 
 function startVoiceAssistant(){
 
@@ -582,8 +567,6 @@ function startVoiceAssistant(){
 
     recognition.lang = "en-US";
 
-    recognition.continuous = false;
-
     recognition.interimResults = false;
 
     recognition.maxAlternatives = 5;
@@ -608,19 +591,10 @@ function startVoiceAssistant(){
 
     recognition.onend = function(){
 
-        waveBox.style.display = "none";
-
         micStatus.innerHTML =
             "✅ Voice Assistant Ready";
 
-    };
-
-    recognition.onerror = function(){
-
         waveBox.style.display = "none";
-
-        micStatus.innerHTML =
-            "❌ Microphone Error";
 
     };
 
@@ -633,86 +607,48 @@ function processCommand(command){
 
     let response = "";
 
-    /* ADVANCED MATCHING */
-
-    if(
-        command.includes("rice")
-    ){
+    if(command.includes("rice")){
 
         response =
-        "Rice Bag stock is 120 units. Inventory level is excellent.";
+        "Rice Bag stock is 120 units with excellent availability.";
+
+    }
+
+    else if(command.includes("milk")){
+
+        response =
+        "Milk stock available is 40 units.";
 
     }
 
     else if(
-        command.includes("milk")
+        command.includes("watch") ||
+        command.includes("smart")
     ){
 
         response =
-        "Milk stock available is 40 units with medium inventory status.";
+        "Smart Watch stock is critically low with only 18 units.";
 
     }
 
-    else if(
-        command.includes("smart") ||
-        command.includes("watch")
-    ){
-
-        response =
-        "Smart Watch inventory is critically low with only 18 units remaining.";
-
-    }
-
-    else if(
-        command.includes("chocolate")
-    ){
-
-        response =
-        "Chocolate stock is low with only 15 units available.";
-
-    }
-
-    else if(
-        command.includes("sales")
-    ){
+    else if(command.includes("sales")){
 
         response =
         "Sales increased by 12 percent this week.";
 
     }
 
-    else if(
-        command.includes("report")
-    ){
+    else if(command.includes("report")){
 
         response =
-        "Inventory reports are available for PDF export.";
-
-    }
-
-    else if(
-        command.includes("low stock")
-    ){
-
-        response =
-        "Smart Watch and Chocolate are low stock products.";
-
-    }
-
-    else if(
-        command.includes("hello") ||
-        command.includes("hi")
-    ){
-
-        response =
-        "Hello. Welcome to StockSense AI.";
+        "Inventory report is ready for export.";
 
     }
 
     else{
 
         response =
-        "I understood your voice but could not find the product. Please try product keywords like rice, milk or smart watch.";
+        "Sorry, please try simple keywords like rice, milk or sales.";
 
     }
 
@@ -720,19 +656,11 @@ function processCommand(command){
 
         "<b>🧠 AI Response:</b><br><br>" +
 
-        response +
-
-        "<br><br><b>🎤 Detected:</b> " +
-
-        command;
+        response;
 
     speakResponse(response);
 
 }
-
-/* =========================================
-   AI SPEAK RESPONSE
-========================================= */
 
 function speakResponse(text){
 
@@ -743,20 +671,150 @@ function speakResponse(text){
 
     speech.text = text;
 
-    speech.volume = 1;
-
     speech.rate = 1;
 
     speech.pitch = 1;
 
-    speech.lang = "en-US";
+    speech.volume = 1;
 
     window.speechSynthesis.speak(speech);
 
 }
 
+/* FLOATING CHATBOT */
+
+function toggleChatbot(){
+
+    const popup =
+        document.getElementById("chatPopup");
+
+    if(
+        popup.style.display === "flex"
+    ){
+
+        popup.style.display = "none";
+
+    }
+
+    else{
+
+        popup.style.display = "flex";
+
+    }
+
+}
+
+function sendMessage(){
+
+    const input =
+        document.getElementById("chatInput");
+
+    const chatBody =
+        document.getElementById("chatBody");
+
+    let message =
+        input.value.trim().toLowerCase();
+
+    if(message === "") return;
+
+    chatBody.innerHTML += `
+
+        <div class="chat-message user-message">
+
+            ${message}
+
+        </div>
+
+    `;
+
+    let response = "";
+
+    if(message.includes("rice")){
+
+        response =
+        "Rice Bag stock is currently 120 units.";
+
+    }
+
+    else if(message.includes("milk")){
+
+        response =
+        "Milk stock available is 40 units.";
+
+    }
+
+    else if(message.includes("watch")){
+
+        response =
+        "Smart Watch stock is low with only 18 units.";
+
+    }
+
+    else if(message.includes("sales")){
+
+        response =
+        "Sales increased by 12 percent this week.";
+
+    }
+
+    else if(message.includes("analytics")){
+
+        response =
+        "Analytics show high demand for groceries.";
+
+    }
+
+    else if(message.includes("report")){
+
+        response =
+        "Inventory reports are available for export.";
+
+    }
+
+    else{
+
+        response =
+        "I can help with stock, sales, reports and analytics.";
+
+    }
+
+    setTimeout(() => {
+
+        chatBody.innerHTML += `
+
+            <div class="chat-message bot-message">
+
+                ${response}
+
+            </div>
+
+        `;
+
+        chatBody.scrollTop =
+            chatBody.scrollHeight;
+
+    }, 400);
+
+    input.value = "";
+
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    document.getElementById("chatInput")
+    .addEventListener("keypress", function(e){
+
+        if(e.key === "Enter"){
+
+            sendMessage();
+
+        }
+
+    });
+
+});
+
 </script>
 
 </body>
-
 </html>
