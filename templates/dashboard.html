@@ -287,7 +287,7 @@
         <li><a href="/lowstock">Low Stock</a></li>
         <li><a href="/analytics">Analytics</a></li>
         <li><a href="/prediction">ML Prediction</a></li>
-        <li><a href="/chatbot">💬 Chatbot</a></li>
+        <li><a href="/chatbot">Chatbot</a></li>
         <li><a href="/profile">Profile</a></li>
         <li><a href="/logout">Logout</a></li>
 
@@ -756,6 +756,28 @@ function sendMessage(){
         "Sales increased by 12 percent this week.";
 
     }
+    else if(
+    message.includes("business insight") ||
+    message.includes("insight") ||
+    message.includes("growth") ||
+    message.includes("future demand")
+){
+
+    response =
+
+    "📈 AI Business Insights:<br><br>" +
+
+    "🔥 Rice Bags are expected to generate <b>18% business growth</b> next week due to increasing customer demand.<br><br>" +
+
+    "🛒 Grocery category products are currently the highest revenue generators in the inventory system.<br><br>" +
+
+    "⚠ Smart Watches may go out of stock within 3 days. AI recommends urgent restocking.<br><br>" +
+
+    "🚀 Increasing grocery inventory can improve overall weekly sales performance by approximately <b>22%</b>.<br><br>" +
+
+    "📊 AI predicts Milk and Chocolate products will experience stable demand throughout the upcoming week.";
+
+}
 
     else if(message.includes("analytics")){
 

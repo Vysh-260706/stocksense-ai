@@ -162,17 +162,34 @@ body{
 /* DASHBOARD CARDS */
 
 .dashboard-card{
-    padding:35px;
-    border-radius:25px;
+
+    padding:18px;
+    border-radius:18px;
     color:white;
-    box-shadow:0 12px 25px rgba(0,0,0,0.12);
-    transition:0.3s;
-    margin-top:25px;
-    min-height:180px;
+    margin-top:20px;
+    box-shadow:0 6px 16px rgba(0,0,0,0.08);
+
+    min-height:170px;
 
     display:flex;
     flex-direction:column;
     justify-content:center;
+
+}
+
+.dashboard-card h5{
+
+    font-size:24px;
+    font-weight:600;
+    margin-bottom:15px;
+
+}
+
+.dashboard-card h2{
+
+    font-size:58px;
+    font-weight:700;
+
 }
 
 .dashboard-card:hover{
